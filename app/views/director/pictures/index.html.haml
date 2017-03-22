@@ -1,0 +1,13 @@
+= section_menu(@menu)
+= show_notice(notice)
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th Picture
+          %th Name
+          %th Description
+          %th Delete
+      %tbody
+        = render partial: "picture", collection: @pictures

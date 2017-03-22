@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @mall.name
+%p
+  %b Address:
+  = @mall.address
+
+= link_to 'Edit', edit_mall_path(@mall)
+\|
+= link_to 'Back', malls_path

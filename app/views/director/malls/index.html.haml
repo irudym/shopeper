@@ -1,0 +1,22 @@
+=title('Shopping malls')
+%table
+  %thead
+    %tr
+      %th Name
+      %th Address
+      %th
+      %th
+      %th
+
+  %tbody
+    - @malls.each do |mall|
+      %tr
+        %td= mall.name
+        %td= mall.address
+        %td= link_to 'Show', mall
+        %td= link_to 'Edit', edit_director_mall_path(mall)
+        %td= link_to 'Destroy', mall, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Mall', new_director_mall_path

@@ -1,0 +1,10 @@
+%tr
+  %td
+    %a{href: edit_director_picture_path(picture)}
+      =image_tag picture.image.url(:thumb)
+  %td
+    = picture.name
+  %td
+    = picture.description
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_picture_path(picture), method: :delete, confirm: 'Are you sure ?'
