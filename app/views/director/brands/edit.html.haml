@@ -1,0 +1,16 @@
+= show_errors @brand
+= form_for @brand, url: director_brand_path, html: {class: 'form-horizontal col-sm-6', role: 'form'} do |form|
+  .form-group
+    = form.label :name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = form.text_field :name, class: 'form-control'
+  .form-group
+    = form.label :description, class: 'control-label col-lg-2'
+    .col-lg-10
+      = form.text_area :description, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-4
+      = form.submit 'Update', class: 'button button-gray'
+.col-sm-6
+  .thumbnail
+    =image_tag @brand.picture.image.url

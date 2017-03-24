@@ -1,0 +1,7 @@
+%tr
+  %td
+    = size.size
+  %td
+    = size.description
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_size_path(size), method: :delete, confirm: 'Are you sure ?'

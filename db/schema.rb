@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322154428) do
+ActiveRecord::Schema.define(version: 20170324172200) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20170322154428) do
     t.string   "name"
     t.integer  "shop_id"
     t.float    "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "trash",       default: false
+    t.text     "description"
     t.index ["shop_id"], name: "index_items_on_shop_id"
   end
 
@@ -64,6 +66,37 @@ ActiveRecord::Schema.define(version: 20170322154428) do
     t.datetime "updated_at", null: false
     t.integer  "mall_id"
     t.index ["mall_id"], name: "index_shops_on_mall_id"
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.string   "size"
+    t.string   "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "trash",       default: false
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.integer  "item_id"
+    t.integer  "size_id"
+    t.integer  "color_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["color_id"], name: "index_stocks_on_color_id"
+    t.index ["item_id"], name: "index_stocks_on_item_id"
+    t.index ["shop_id"], name: "index_stocks_on_shop_id"
+    t.index ["size_id"], name: "index_stocks_on_size_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "picture_id"
+    t.boolean  "trash",       default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["picture_id"], name: "index_types_on_picture_id"
   end
 
 end

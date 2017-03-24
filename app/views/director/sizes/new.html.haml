@@ -1,0 +1,14 @@
+= show_errors @size
+
+= form_for @size, url: director_sizes_path, html: {class: 'form-horizontal', role: 'form'} do |form|
+  .form-group
+    = form.label :size, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_field :size, class: 'form-control'
+  .form-group
+    = form.label :description, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_area :description, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-4
+      = form.submit 'Add Size', class: 'button button-gray'

@@ -1,0 +1,9 @@
+%tr
+  %td
+    = size_restore.size
+  %td
+    = size_restore.description
+  %td
+    = link_to "#{icon('undo')}".html_safe, {controller: :sizes, action: "update", id: size_restore.id, size: {trash: false}}, method: :put
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_size_path(size_restore), method: :delete, confirm: 'Are you sure ?'

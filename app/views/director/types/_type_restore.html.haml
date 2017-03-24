@@ -1,0 +1,9 @@
+%tr
+  %td
+    = type_restore.name
+  %td
+    = type_restore.description
+  %td
+    = link_to "#{icon('undo')}".html_safe, {controller: :types, action: "update", id: type_restore.id, type: {trash: false}}, method: :put
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_type_path(type_restore), method: :delete, confirm: 'Are you sure ?'

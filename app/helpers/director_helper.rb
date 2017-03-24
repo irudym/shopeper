@@ -34,7 +34,17 @@ module DirectorHelper
         {
             text: 'colors',
             url: director_colors_path,
-            icon: 'eyedropper'
+            icon: 'paint-brush'
+        },
+        {
+            text: 'sizes',
+            url: director_sizes_path,
+            icon: 'expand'
+        },
+        {
+            text: 'types',
+            url: director_types_path,
+            icon: 'tag'
         }
     ]
     menu = menu_items.inject('') do |acc, item|
@@ -100,9 +110,9 @@ module DirectorHelper
     html_str.html_safe
   end
 
-  def selector(options)
+  def selector(options, model)
     puts "Call SELECTOR"
-    html = "<select class='selectpicker' data-live-search='true' name='brand[image_id]' id='brand_image_id'>"
+    html = "<select class='selectpicker' data-live-search='true' name='#{model}[image_id]' id='#{model}_image_id'>"
     html += options.inject("") do |acc, item|
       acc + "<option value='#{item[:id]}'>#{item[:name]}</option>"
     end + "</select>"

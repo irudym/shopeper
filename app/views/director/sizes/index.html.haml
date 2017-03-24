@@ -1,0 +1,12 @@
+= section_menu(@menu)
+= show_notice(notice)
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th Size
+          %th Description
+          %th Delete
+      %tbody
+        = render partial: "size", collection: @sizes

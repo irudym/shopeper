@@ -1,5 +1,4 @@
-class Picture < ApplicationRecord
-  include TrashBin
+class Picture < DirectorRecord
 
   has_attached_file :image, :styles => { :thumb => "50x50>" }
   # Validate content type

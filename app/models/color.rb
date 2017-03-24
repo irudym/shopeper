@@ -1,2 +1,2 @@
-class Color < ApplicationRecord
+class Color < DierctorRecord
 end

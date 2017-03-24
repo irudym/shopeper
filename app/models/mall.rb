@@ -1,2 +1,2 @@
-class Mall < ApplicationRecord
+class Mall < DirectorRecord
 end

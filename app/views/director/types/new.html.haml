@@ -1,0 +1,22 @@
+= show_errors @type
+
+= form_for @type, url: director_types_path, html: {class: 'form-horizontal', role: 'form'} do |form|
+  .form-group
+    = form.label :type, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_field :name, class: 'form-control'
+  .form-group
+    = form.label :description, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_area :description, class: 'form-control'
+  .form-group
+    = form.label 'Select picture', class: 'control-label col-sm-2'
+    .col-sm-4
+      = selector(@pictures, 'type')
+  .form-group
+    = form.label 'Or upload new one', class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.file_field :image, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-4
+      = form.submit 'Add Type', class: 'button button-gray'

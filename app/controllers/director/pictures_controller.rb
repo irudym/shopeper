@@ -46,13 +46,17 @@ class Director::PicturesController < DirectorController
 
   def trash
     @pictures = Picture.trash_bin
+    @menu = [
+        {text: 'Add picture', url: new_director_picture_path, icon: 'plus'},
+        {text: "All (#{Picture.where(trash: false).count})", url: director_pictures_path, icon: 'picture-o'}
+    ]
   end
 
   def destroy
     name = @picture.name
     @picture.put_to_trash
     respond_to do |format|
-      format.html { redirect_to  director_pictures_path, notice: "Picture [#{name}]was successfully deleted." }
+      format.html { redirect_to  director_pictures_path, notice: "Picture [#{name}] was successfully deleted." }
       format.json { head :no_content }
     end
   end

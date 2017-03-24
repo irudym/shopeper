@@ -1,5 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe "items/index.html.haml", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+=begin
+ RSpec.describe "malls/index", type: :view do
+  before(:each) do
+    assign(:malls, [
+        Mall.create!(
+            :name => "Name",
+            :address => "Address"
+        ),
+        Mall.create!(
+            :name => "Name",
+            :address => "Address"
+        )
+    ])
+  end
+
+  it "renders a list of malls" do
+    render
+    assert_select "tr>td", :text => "Name".to_s, :count => 2
+    assert_select "tr>td", :text => "Address".to_s, :count => 2
+  end
 end
+=end

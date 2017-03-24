@@ -1,0 +1,12 @@
+
+%tr
+  %td
+    %a{href: edit_director_type_path(type)}
+      = image_tag type.picture.image.url(:thumb) if type.picture
+  %td
+    %a{href: edit_director_type_path(type)}
+      = type.name
+  %td
+    = type.description
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_type_path(type), method: :delete, confirm: 'Are you sure ?'

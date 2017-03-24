@@ -3,7 +3,8 @@
     %a{href: edit_director_brand_path(brand)}
       =image_tag brand.picture.image.url(:thumb)
   %td
-    = brand.name
+    %a{href: edit_director_brand_path(brand)}
+      = brand.name
   %td
     = brand.description
   %td

@@ -1,6 +1,5 @@
-class Brand < ApplicationRecord
+class Brand < DirectorRecord
   belongs_to :picture
   validates :name, presence: true
-  
-  include TrashBin
+
 end
