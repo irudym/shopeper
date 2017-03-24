@@ -1,0 +1,54 @@
+SITE
+  remote: https://supermarket.chef.io/api/v1
+  specs:
+    apt (6.0.1)
+    ark (2.2.1)
+      build-essential (>= 0.0.0)
+      seven_zip (>= 0.0.0)
+      windows (>= 0.0.0)
+    build-essential (8.0.0)
+      mingw (>= 1.1)
+      seven_zip (>= 0.0.0)
+    chef_gem (0.1.0)
+    compat_resource (12.16.3)
+    dmg (3.1.0)
+    git (6.0.0)
+      build-essential (>= 0.0.0)
+      dmg (>= 0.0.0)
+      yum-epel (>= 0.0.0)
+    homebrew (3.0.0)
+    mingw (2.0.0)
+      seven_zip (>= 0.0.0)
+    mysql (8.2.0)
+    nano (1.0.3)
+    nodejs (3.0.0)
+      apt (>= 2.9.1)
+      ark (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      homebrew (>= 0.0.0)
+      yum-epel (>= 0.0.0)
+    ohai (5.0.0)
+    seven_zip (2.0.2)
+      windows (>= 1.2.2)
+    windows (3.0.2)
+      ohai (>= 4.0.0)
+    yarn (0.3.0)
+    yum-epel (2.1.1)
+      compat_resource (>= 12.16.3)
+
+GIT
+  remote: git://github.com/fnichol/chef-rvm.git
+  ref: master
+  sha: eddd733694a1d3e0872f5692e8dda93aa2752791
+  specs:
+    rvm (0.10.1)
+      chef_gem (>= 0.0.0)
+
+DEPENDENCIES
+  git (~> 6.0.0)
+  mysql (~> 8.2.0)
+  nano (>= 0)
+  nodejs (~> 3.0.0)
+  rvm (>= 0)
+  yarn (~> 0.3.0)
+

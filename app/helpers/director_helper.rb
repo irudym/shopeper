@@ -100,4 +100,12 @@ module DirectorHelper
     html_str.html_safe
   end
 
+  def selector(options)
+    puts "Call SELECTOR"
+    html = "<select class='selectpicker' data-live-search='true' name='brand[image_id]' id='brand_image_id'>"
+    html += options.inject("") do |acc, item|
+      acc + "<option value='#{item[:id]}'>#{item[:name]}</option>"
+    end + "</select>"
+    html.html_safe
+  end
 end

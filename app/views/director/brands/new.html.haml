@@ -1,0 +1,21 @@
+= show_errors @brand
+= form_for @brand, url: director_brands_path, html: {class: 'form-horizontal', role: 'form'} do |form|
+  .form-group
+    = form.label :name, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_field :name, class: 'form-control'
+  .form-group
+    = form.label :description, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_area :description, class: 'form-control'
+  .form-group
+    = form.label 'Select picture', class: 'control-label col-sm-2'
+    .col-sm-4
+      = selector(@pictures)
+  .form-group
+    = form.label 'Or upload new one', class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.file_field :image, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-4
+      = form.submit 'Create', class: 'button button-gray'

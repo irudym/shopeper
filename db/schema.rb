@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321141226) do
+ActiveRecord::Schema.define(version: 20170322154428) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
     t.integer  "picture_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "trash",       default: false
+    t.text     "description"
     t.index ["picture_id"], name: "index_brands_on_picture_id"
   end
 

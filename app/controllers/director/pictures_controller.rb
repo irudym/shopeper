@@ -39,7 +39,7 @@ class Director::PicturesController < DirectorController
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new }
-        format.json { render json: @mall.errors, status: :unprocessable_entity }
+        format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
   end

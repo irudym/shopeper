@@ -1,0 +1,8 @@
+site "https://supermarket.chef.io/api/v1"
+
+cookbook 'nodejs', '~> 3.0.0'
+cookbook 'mysql', '~> 8.2.0'
+cookbook 'git', '~> 6.0.0'
+cookbook 'nano'
+cookbook 'rvm', :git => 'git://github.com/fnichol/chef-rvm.git'
+cookbook 'yarn', '~> 0.3.0'
