@@ -19,11 +19,4 @@ describe 'Create New Item template', type: :view do
       assert_select "input#item_description[name=?]", "item[description]"
     end
   end
-
-  it 'provides a way to add at least three pictures' do
-    assert_select '.pictures' do
-      assert_select '.panel', 3
-    end
-  end
-
 end

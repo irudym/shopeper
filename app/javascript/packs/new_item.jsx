@@ -5,18 +5,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import NameInput from './components/name_input';
-import SelectInput from './components/select_input';
 import ImagePickerGroup from './containers/image_picker_group';
+import SelectContainer from './containers/select/select_container';
 
 const options = [];
 const onClick = (name) => {}
 
 const NewItem = () => (
-    <form className="form-horizontal" role="form">
-      <NameInput />
-      <SelectInput options={options} />
-      <ImagePickerGroup names={['img1', 'img2', 'img3']} onClick={onClick}/>
-    </form>
+  <form className="form-horizontal" role="form">
+    <NameInput />
+    <SelectContainer options={options} name="Type" model="type" />
+    <ImagePickerGroup names={['img1', 'img2', 'img3']} onClick={onClick} />
+  </form>
 );
 
 ReactDOM.render(

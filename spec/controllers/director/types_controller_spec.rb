@@ -6,14 +6,17 @@ RSpec.describe Director::TypesController, type: :controller do
   # Director::Type. As you add validations to Director::Type, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
+    picture = create(:picture)
     {
         name: 'test',
-        picture_id: 0
+        picture: picture
     }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: 'test'
+    }
   }
 
   # This should return the minimal set of values that should be in the session
