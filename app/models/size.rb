@@ -1,4 +1,3 @@
 class Size < DirectorRecord
-
-  validates :size, presence: true
+  validates :name, presence: true
 end

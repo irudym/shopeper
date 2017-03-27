@@ -75,12 +75,12 @@ class Director::SizesController < DirectorController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_size
-      @size = Size.find(params[:id])
+      @size = Size.where(id: params[:id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def size_params
-      params.require(:size).permit(:size, :description, :trash)
+      params.require(:size).permit(:name, :description, :trash)
     end
 
     def set_title

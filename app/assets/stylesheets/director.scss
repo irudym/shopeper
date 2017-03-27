@@ -177,6 +177,13 @@ h1 {
   color: $color-green;
 }
 
+.color-box {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+}
+
+
 @media (max-width: $screen-xs-max) {
   .side-bar {
     width: 5rem;

@@ -1,0 +1,14 @@
+= show_errors @color
+
+= form_for @color, url: director_colors_path, html: {class: 'form-horizontal', role: 'form'} do |form|
+  .form-group
+    = form.label :name, class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_field :name, class: 'form-control'
+  .form-group
+    = form.label "Code(HEX)", class: 'control-label col-sm-2'
+    .col-sm-4
+      = form.text_field :hex_code, class: 'form-control hex-input'
+  .form-group
+    .col-sm-offset-2.col-sm-4
+      = form.submit 'Add Color', class: 'button button-gray'

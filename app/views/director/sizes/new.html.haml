@@ -2,9 +2,9 @@
 
 = form_for @size, url: director_sizes_path, html: {class: 'form-horizontal', role: 'form'} do |form|
   .form-group
-    = form.label :size, class: 'control-label col-sm-2'
+    = form.label "Size", class: 'control-label col-sm-2'
     .col-sm-4
-      = form.text_field :size, class: 'form-control'
+      = form.text_field :name, class: 'form-control'
   .form-group
     = form.label :description, class: 'control-label col-sm-2'
     .col-sm-4

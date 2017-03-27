@@ -11,6 +11,10 @@ class Director::ItemsController < DirectorController
   def show
   end
 
+  def new
+    @item = Item.new
+  end
+
   private
 
   def set_title

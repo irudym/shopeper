@@ -111,7 +111,6 @@ module DirectorHelper
   end
 
   def selector(options, model)
-    puts "Call SELECTOR"
     html = "<select class='selectpicker' data-live-search='true' name='#{model}[image_id]' id='#{model}_image_id'>"
     html += options.inject("") do |acc, item|
       acc + "<option value='#{item[:id]}'>#{item[:name]}</option>"
