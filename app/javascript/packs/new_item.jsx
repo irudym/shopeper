@@ -6,16 +6,21 @@ import ReactDOM from 'react-dom';
 
 import NameInput from './components/name_input';
 import ImagePickerGroup from './containers/image_picker_group';
-import SelectContainer from './containers/select/select_container';
+import SelectWithUrl from './hocs/select_with_url';
+import SubmitButton from './components/submit_button';
 
-const options = [];
 const onClick = (name) => {}
+
+const SelectTypes = SelectWithUrl('/director/types.json');
+const SelectBrands = SelectWithUrl('/director/brands.json');
 
 const NewItem = () => (
   <form className="form-horizontal" role="form">
     <NameInput />
-    <SelectContainer options={options} name="Type" model="type" />
+    <SelectTypes name="Type" model="type" />
+    <SelectBrands name="Brand" model="brand" />
     <ImagePickerGroup names={['img1', 'img2', 'img3']} onClick={onClick} />
+    <SubmitButton title="Add Item" />
   </form>
 );
 

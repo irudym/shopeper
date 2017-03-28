@@ -1,13 +1,6 @@
 import React, { PropTypes } from 'react';
 import SelectOption from './select_option';
 
-const listVisible = {
-  display: 'block',
-};
-
-const listHidden = {
-  display: 'none',
-};
 
 const listStyle = {
   maxHeight: '17rem',

@@ -6,7 +6,7 @@ const optionStyle = {
 };
 
 const SelectOption = ({ value, onSelect }) => (
-  <li style={optionStyle} onMouseDown={(e) => { e.stopPropagation(); console.log("OnClick on: ", value); onSelect(value); }}>
+  <li style={optionStyle} onMouseDown={(e) => { e.stopPropagation(); onSelect(value); }}>
     {value.value}
   </li>
 );

@@ -7,6 +7,7 @@
     "coffee-loader": "^0.7.3",
     "coffee-script": "^1.12.4",
     "compression-webpack-plugin": "^0.3.2",
+    "fetch": "^1.1.0",
     "glob": "^7.1.1",
     "path-complete-extname": "^0.1.0",
     "rails-erb-loader": "^3.2.0",

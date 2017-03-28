@@ -1,2 +1,2 @@
-json.extract! size, :id, :size, :description, :created_at, :updated_at
-json.url size_url(size, format: :json)
+json.extract! size, :id, :name, :description
+# json.url director_size_url(size, format: :json)
