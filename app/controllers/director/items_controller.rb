@@ -15,6 +15,18 @@ class Director::ItemsController < DirectorController
     @item = Item.new
   end
 
+  def create
+    puts "PARAMS: #{params}"
+    image = {id: nil}
+    if item_params[:image]
+      image = Picture.create(name: item_params[:name], image: item_params[:image], description: "Image of #{item_params[:name]} item")
+    else
+      image = Picture.where(id: item_params[:image_id]).first if item_params[:image_id]
+    end
+    puts "IMAGE: #{image}"
+    # @item = Item.new(item_params)
+  end
+
   private
 
   def set_title
@@ -30,7 +42,7 @@ class Director::ItemsController < DirectorController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, )
+    params.require(:item).permit(:name, :description, :brand, :type, :image, :image_id, :pic1, :pic2, :pic3)
   end
 
   def set_item

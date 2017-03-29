@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Label from '../label';
 
 const selectStyle = {
   boxSizing: 'border-box',
@@ -9,13 +10,13 @@ const selectArrowZone = {
   textAlign: 'center',
   verticalAlign: 'middle',
   whiteSpace: 'nowrap',
-  zIndex: -1,
 };
 
 const selectOption = {
   position: 'absolute',
   top: 7,
   left: 28,
+  fontWeight: 'normal',
 };
 
 const selectArrow = {
@@ -27,7 +28,6 @@ const selectArrow = {
   position: 'absolute',
   top: '50%',
   right: 25,
-  zIndex: -1,
 };
 
 const selectArrowExpanded = {
@@ -48,19 +48,35 @@ const inputStyle = {
 
 const SelectInput = ({ model, name, onChange, onClick, expanded, children, option, showOption, value }) => (
   <div className="form-group" style={selectStyle} >
-    <label className="control-label col-sm-2" htmlFor={model}>{name}</label>
+    <Label name={name} />
     <div className="col-sm-4">
-      <input type="hidden" name="select-state" value="" />
-      <span className="select-arrow-zone" style={selectArrowZone} onClick={onClick}>
-        <span className="select-arrow" style={expanded ? selectArrowExpanded : selectArrow} />
+      <input
+        type="hidden"
+        name={`${model}[${name}]`}
+        id={`${model}_${name}`}
+        value={option.id}
+      />
+      <span className="select-arrow-zone" style={selectArrowZone}>
+        <label
+          htmlFor={expanded ? ' ' : `${model}_${name}_select`}
+          className="select-arrow"
+          style={expanded ? selectArrowExpanded : selectArrow}
+          onMouseDown={(e) => {
+            if(expanded) {
+              console.log("Trying to close the select");
+              e.stopPropagation();
+            }
+          }}
+        />
       </span>
       <div className="select-input" >
-        {option !== '' && showOption ?
-          <span className="select-option" style={selectOption}>{option}</span>
+        {option.value !== '' && showOption ?
+          <label htmlFor={`${model}_${name}_select`} className="select-option" style={selectOption}>{option.value}</label>
           :
           ''
         }
         <input
+          id={`${model}_${name}_select`}
           type="text"
           className="form-control"
           onClick={
@@ -92,13 +108,19 @@ SelectInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,
-  option: PropTypes.string,
+  option: PropTypes.shape({
+    id: PropTypes.number,
+    value: PropTypes.string,
+  }),
   showOption: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
 };
 
 SelectInput.defaultProps = {
-  option: '',
+  option: {
+    id: -1,
+    value: '',
+  },
 };
 
 export default SelectInput;

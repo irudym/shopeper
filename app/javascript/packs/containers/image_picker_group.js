@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
-import ReactModal from 'react-modal';
 
 import ImagePicker from '../components/image_picker';
+import PictureSelect from './picture_select';
+
 
 class ImagePickerGroup extends Component {
 
@@ -9,15 +10,24 @@ class ImagePickerGroup extends Component {
     super(props);
     this.showImageSelect = this.showImageSelect.bind(this);
     this.closeImageSelect = this.closeImageSelect.bind(this);
+    this.handlePictureSelect = this.handlePictureSelect.bind(this);
 
     this.state = {
       showModal: false,
+      pictureId: null,
+      pictureUrls: this.props.pictures,
+      pictureValues: [],
+      picker: {},
     };
   }
 
-  showImageSelect() {
+  showImageSelect(pictureId) {
     this.setState({
       showModal: true,
+      pictureId,
+      picker: {
+        inputId: `${this.props.model}_${this.props.names[pictureId]}_file`,
+      },
     });
   }
 
@@ -27,6 +37,24 @@ class ImagePickerGroup extends Component {
     });
   }
 
+  handlePictureSelect(e) {
+    console.log('Picture selected: ', e.files);
+    this.closeImageSelect();
+    // change picture at image_picker
+    let reader = new FileReader();
+    reader.onload = (res) => {
+      let purls = this.state.pictureUrls;
+      purls[this.state.pictureId] = res.target.result;
+      let pvals = this.state.pictureValues;
+      pvals[this.state.pictureId] = e.value;
+      console.log("Set value: ",e.value);
+      //this.setState({
+      //  pictureUrls: purls,
+      //});
+      console.log("Set picture: ", res.target.result, " to index: ", this.state.pictureId);
+    }
+    reader.readAsDataURL(e.files[0]);
+  }
 
   render() {
     return (
@@ -35,19 +63,23 @@ class ImagePickerGroup extends Component {
           <label className="control-label col-sm-2" htmlFor="name">{'Images'}</label>
           { this.props.names.map((item, index) => (
             <ImagePicker
-              name={this.props.item}
+              name={item}
               size={3}
-              image={this.props.images[index]}
-              onClick={this.showImageSelect}
+              image={this.state.pictureUrls[index]}
+              onClick={() => (this.showImageSelect(index))}
+              model={this.props.model}
+              value={this.state.pictureValues[index]}
             />
           ))}
         </div>
-        <ReactModal
+        <PictureSelect
           isOpen={this.state.showModal}
-          contentLabel="Minimal Modal Example"
-        >
-          <button onClick={this.closeImageSelect}>Close Modal</button>
-        </ReactModal>
+          onClose={this.closeImageSelect}
+          onSelect={this.handlePictureSelect}
+          picker = {this.state.picker}
+          id={this.state.pictureId}
+          externalId={this.state.externalId}
+        />
       </div>
     );
   }
@@ -55,12 +87,12 @@ class ImagePickerGroup extends Component {
 
 ImagePickerGroup.propTypes = {
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClick: PropTypes.func.isRequired,
-  images: PropTypes.arrayOf(PropTypes.string),
+  pictures: PropTypes.arrayOf(PropTypes.string),
+  model: PropTypes.string.isRequired,
 };
 
 ImagePickerGroup.defaultProps = {
-  images: [],
+  pictures: ['', '', ''],
 };
 
 

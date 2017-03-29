@@ -4,7 +4,10 @@ import { storiesOf, action, linkTo } from '@kadira/storybook';
 import Welcome from './Welcome';
 import SelectInput from '../app/javascript/packs/components/select/select_input';
 
-import SelectContainer from '../app/javascript/packs/containers/select/select_container.js';
+import SelectContainer from '../app/javascript/packs/containers/select/select_container';
+import ModalHeader from '../app/javascript/packs/components/modal/modal_header';
+import ImagePickerGroup from '../app/javascript/packs/containers/image_picker_group';
+import FileInput from '../app/javascript/packs/components/file_input';
 
 // import bootstrap scss
 import './styles/bootstrap.min.css';
@@ -47,4 +50,19 @@ storiesOf('Select Container', module)
   <div className="row">
     <SelectContainer model="test" name="Name" options={options} />
   </div></div>
+  ));
+
+storiesOf('ModalView Header', module)
+  .add('with title', () => (
+    <ModalHeader title="Test modal" />
+  ));
+
+storiesOf('ImagePicker', module)
+.add('with three images', () => (
+  <ImagePickerGroup names={['img1', 'img2', 'img3']} />
+));
+
+storiesOf('FileInput', module)
+  .add('with name', () => (
+    <FileInput name="picture" model="item" />
   ));

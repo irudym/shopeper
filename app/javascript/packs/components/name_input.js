@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react';
+import Label from './label';
 
-const NameInput = ({ onChange }) => (
+const NameInput = ({ model, name, onChange }) => (
   <div className="form-group">
-    <label className="control-label col-sm-2" htmlFor="type">{'Name'}</label>
+    <Label name={name} htmlFor={`${model}_${name}`} />
     <div className="col-sm-4">
       <input
         className="form-control"
-        name="type[name]"
-        id="type_name"
+        name={`${model}[${name}]`}
+        id={`${model}_${name}`}
         type="text"
         onChange={onChange}
       />
@@ -16,7 +17,15 @@ const NameInput = ({ onChange }) => (
 );
 
 NameInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  model: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+NameInput.defaultProps = {
+  model: '',
+  name: '',
+  onChange: null,
 };
 
 export default NameInput;

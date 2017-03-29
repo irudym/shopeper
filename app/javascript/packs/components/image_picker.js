@@ -10,8 +10,10 @@ const pointerCursor = {
   cursor: 'pointer',
 };
 
-const ImagePicker = ({ name, size, image, onClick }) => (
+const ImagePicker = ({ name, size, image, onClick, model }) => (
   <div className={`col-sm-${size}`}>
+    <input type="hidden" name={`${model}[${name}]`} />
+    <input type="file" name={`${model}[${name}]_file`} id={`${model}_${name}_file`} />
     <div className="thumbnail" style={pointerCursor} onClick={onClick} >
       {
         image === '' ?
@@ -28,6 +30,7 @@ ImagePicker.propTypes = {
   image: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   size: PropTypes.number,
+  model: PropTypes.string.isRequired,
 };
 
 ImagePicker.defaultProps = {

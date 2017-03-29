@@ -8,20 +8,25 @@ import NameInput from './components/name_input';
 import ImagePickerGroup from './containers/image_picker_group';
 import SelectWithUrl from './hocs/select_with_url';
 import SubmitButton from './components/submit_button';
+import FormSubmit from './components/form_submit';
 
-const onClick = (name) => {}
 
 const SelectTypes = SelectWithUrl('/director/types.json');
 const SelectBrands = SelectWithUrl('/director/brands.json');
 
 const NewItem = () => (
-  <form className="form-horizontal" role="form">
-    <NameInput />
-    <SelectTypes name="Type" model="type" />
-    <SelectBrands name="Brand" model="brand" />
-    <ImagePickerGroup names={['img1', 'img2', 'img3']} onClick={onClick} />
+  <FormSubmit
+    id="item_id"
+    action="/director/items"
+    token={$('meta[name=csrf-token]').attr('content')}
+    enctype={"multipart/form-data"}
+  >
+    <NameInput name="name" model="item" />
+    <SelectTypes name="type" model="item" />
+    <SelectBrands name="brand" model="item" />
+    <ImagePickerGroup names={['image1', 'image2', 'image3']} model="item" />
     <SubmitButton title="Add Item" />
-  </form>
+  </FormSubmit>
 );
 
 ReactDOM.render(

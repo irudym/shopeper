@@ -1,11 +1,8 @@
 import React, { PropTypes } from 'react';
+import FormButton from './form_button';
 
 const SubmitButton = ({ title }) => (
-  <div className="form-group">
-    <div className="col-sm-offset-2 col-sm-4">
-      <button className="button button-gray">{title}</button>
-    </div>
-  </div>
+  <FormButton type="submit" name="commit" title={title} />
 );
 
 SubmitButton.propTypes = {

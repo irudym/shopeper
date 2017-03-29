@@ -39,9 +39,15 @@ class SelectContainer extends Component {
 
   handleSelect(item) {
     console.log('onSelect/onClick');
+    if (this.props.onSelect !== null) {
+      this.props.onSelect({
+        component: this.props.name,
+        value: item,
+      });
+    }
     this.setState({
       expanded: false,
-      option: item.value,
+      option: item,
       showOption: true,
       value: '',
       filter: '',
@@ -81,6 +87,11 @@ SelectContainer.propTypes = {
     id: PropTypes.number,
     value: PropTypes.string,
   })).isRequired,
+  onSelect: PropTypes.func,
+};
+
+SelectContainer.defaultProps = {
+  onSelect: null,
 };
 
 export default SelectContainer;
