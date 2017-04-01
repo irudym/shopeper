@@ -1,7 +1,3 @@
-%h1 Editing mall
-
-= render 'form'
-
-= link_to 'Show', @mall
-\|
-= link_to 'Back', malls_path
+= show_errors @mall
+#app-block{data:{json: @mall.to_json}}
+= javascript_pack_tag 'edit_mall'

@@ -9,11 +9,4 @@
           %th Address
           %th Delete
       %tbody
-        - @malls.each do |mall|
-          %tr
-            %td
-              = mall.name
-            %td
-              = mall.address
-            %td
-              = link_to "#{icon('trash')}".html_safe, director_mall_path(mall), method: :delete, confirm: 'Are you sure ?'
+        = render partial: "mall", collection: @malls

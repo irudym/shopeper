@@ -6,7 +6,7 @@ class Director::MallsController < DirectorController
   # GET /malls
   # GET /malls.json
   def index
-    @malls = Mall.all
+    @malls = Mall.where(trash: false)
   end
 
   # GET /malls/1
@@ -21,6 +21,14 @@ class Director::MallsController < DirectorController
 
   # GET /malls/1/edit
   def edit
+  end
+
+  def trash
+    @malls = Mall.where(trash: true)
+    @menu = [
+        {text: 'New type', url: new_director_mall_path, icon: 'pencil'},
+        {text: "All (#{Mall.where(trash: false).count})", url: director_malls_path, icon: 'tag'}
+    ]
   end
 
   # POST /malls
@@ -44,7 +52,7 @@ class Director::MallsController < DirectorController
   def update
     respond_to do |format|
       if @mall.update(mall_params)
-        format.html { redirect_to @mall, notice: 'Mall was successfully updated.' }
+        format.html { redirect_to director_malls_path, notice: 'Mall was successfully updated.' }
         format.json { render :show, status: :ok, location: @mall }
       else
         format.html { render :edit }
@@ -56,9 +64,9 @@ class Director::MallsController < DirectorController
   # DELETE /malls/1
   # DELETE /malls/1.json
   def destroy
-    @mall.destroy
+    @mall.put_to_trash
     respond_to do |format|
-      format.html { redirect_to malls_url, notice: 'Mall was successfully destroyed.' }
+      format.html { redirect_to director_malls_path, notice: 'Mall was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -71,7 +79,7 @@ class Director::MallsController < DirectorController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mall_params
-      params.require(:mall).permit(:name, :address)
+      params.require(:mall).permit(:name, :address, :description, :picture, :trash)
     end
 
     def set_title
