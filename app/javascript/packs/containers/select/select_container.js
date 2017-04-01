@@ -6,10 +6,10 @@ import SelectList from '../../components/select/select_list';
 class SelectContainer extends Component {
   constructor(props) {
     super(props);
-
+    // set default value
     this.state = {
       expanded: false,
-      option: '',
+      option: this.props.defaultValue,
       previouse: '',
       filter: '',
       showOption: true,
@@ -38,7 +38,7 @@ class SelectContainer extends Component {
   }
 
   handleSelect(item) {
-    console.log('onSelect/onClick');
+    // console.log('onSelect/onClick');
     if (this.props.onSelect !== null) {
       this.props.onSelect({
         component: this.props.name,
@@ -88,10 +88,15 @@ SelectContainer.propTypes = {
     value: PropTypes.string,
   })).isRequired,
   onSelect: PropTypes.func,
+  defaultValue: PropTypes.shape({
+    id: PropTypes.number,
+    value: PropTypes.string,
+  }),
 };
 
 SelectContainer.defaultProps = {
   onSelect: null,
+  defaultValue: {},
 };
 
 export default SelectContainer;

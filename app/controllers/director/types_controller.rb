@@ -84,7 +84,9 @@ class Director::TypesController < DirectorController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_type
-      @type = Type.where(params[:id]).first
+      puts "set_type: #{params[:id]}"
+      @type = Type.where(id: params[:id]).first
+      puts "set_type, find: #{@type.id}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

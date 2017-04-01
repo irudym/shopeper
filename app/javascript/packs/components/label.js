@@ -8,7 +8,7 @@ const Label = ({ name, htmlFor, children }) => (
 
 Label.propTypes = {
   name: PropTypes.string.isRequired,
-  htmlFor: PropTypes.string.isRequired,
+  htmlFor: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),
@@ -17,6 +17,7 @@ Label.propTypes = {
 
 Label.defaultProps = {
   children: null,
+  htmlFor: '',
 };
 
 export default Label;

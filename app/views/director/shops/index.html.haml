@@ -1,1 +1,19 @@
-= title('Shops')
+= section_menu(@menu)
+= show_notice(notice)
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Address
+          %th
+          %th
+          %th
+    %tbody
+      - @shops.each do |shop|
+        %tr
+          %td= shop.name
+          %td= shop.address
+          %td
+            = link_to "#{icon('trash')}".html_safe, director_shop_path(shop), method: :delete, confirm: 'Are you sure ?'

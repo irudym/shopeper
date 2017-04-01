@@ -3,7 +3,7 @@ import { storiesOf, action, linkTo } from '@kadira/storybook';
 
 import Welcome from './Welcome';
 import SelectInput from '../app/javascript/packs/components/select/select_input';
-
+import SelectList from '../app/javascript/packs/components/select/select_list';
 import SelectContainer from '../app/javascript/packs/containers/select/select_container';
 import ModalHeader from '../app/javascript/packs/components/modal/modal_header';
 import ImagePickerGroup from '../app/javascript/packs/containers/image_picker_group';
@@ -38,7 +38,14 @@ storiesOf('Select Input', module)
     <SelectInput model="test" name="Name" options={options} onChange={action('changed')} expanded={false} />
   ))
   .add('with 3 options and expanded', () => (
-    <SelectInput model="test" name="Name" options={options} onChange={action('changed')} expanded={true} />
+    <SelectInput model="test" name="Name" options={options} onChange={action('changed')} expanded={true}>
+      <SelectList
+        expanded={true}
+        options={options}
+        onSelect={action('onSelect')}
+        filter={''}
+      />
+    </SelectInput>
   ));
 
 storiesOf('Select Container', module)

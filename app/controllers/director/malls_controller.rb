@@ -1,5 +1,7 @@
 class Director::MallsController < DirectorController
   before_action :set_mall, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu, only: [:index, :new, :create, :trash]
+  before_action :set_title
 
   # GET /malls
   # GET /malls.json
@@ -28,7 +30,7 @@ class Director::MallsController < DirectorController
 
     respond_to do |format|
       if @mall.save
-        format.html { redirect_to @mall, notice: 'Mall was successfully created.' }
+        format.html { redirect_to director_malls_path, notice: 'Mall was successfully created.' }
         format.json { render :show, status: :created, location: @mall }
       else
         format.html { render :new }
@@ -70,5 +72,17 @@ class Director::MallsController < DirectorController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mall_params
       params.require(:mall).permit(:name, :address)
+    end
+
+    def set_title
+      @title = 'Malls'
+    end
+
+    def set_menu
+      trash_count = Mall.trash_bin.count
+      @menu = [
+          {text: 'Add mall', url: new_director_mall_path, icon: 'plus'},
+          {text: "Trash (#{trash_count})", url: director_malls_trash_path, icon: 'trash'}
+      ]
     end
 end

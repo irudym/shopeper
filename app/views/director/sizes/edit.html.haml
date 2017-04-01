@@ -1,7 +1,13 @@
-%h1 Editing size
-
-= render 'form'
-
-= link_to 'Show', @size
-\|
-= link_to 'Back', sizes_path
+= show_errors @size
+= form_for @size, url: director_size_path, html: {class: 'form-horizontal col-sm-6', role: 'form'} do |form|
+  .form-group
+    = form.label "Size", class: 'control-label col-lg-2'
+    .col-lg-10
+      = form.text_field :name, class: 'form-control'
+  .form-group
+    = form.label :description, class: 'control-label col-lg-2'
+    .col-lg-10
+      = form.text_area :description, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-4
+      = form.submit 'Update', class: 'button button-gray'

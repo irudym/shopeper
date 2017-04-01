@@ -6,7 +6,7 @@ class Director::SizesController < DirectorController
   # GET /sizes
   # GET /sizes.json
   def index
-    @sizes = Size.all
+    @sizes = Size.where(trash: false)
   end
 
   # GET /sizes/1

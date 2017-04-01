@@ -1,7 +1,7 @@
 /**
  * Update components with json data
  */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import 'whatwg-fetch';
 
 const withUrl = (WrappedComponent, url) => (
@@ -16,7 +16,7 @@ const withUrl = (WrappedComponent, url) => (
     componentDidMount() {
       fetch(url)
         .then(response => response.json())
-        .then(data => {
+        .then((data) => {
           const options = data.map(item => (
             {
               id: item.id,

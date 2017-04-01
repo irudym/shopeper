@@ -1,88 +1,110 @@
 import React, { PropTypes, Component } from 'react';
 
-import ImagePicker from '../components/image_picker';
-import PictureSelect from './picture_select';
+import PicturePicker from '../components/picture/picture_picker';
+import ShowErrors from '../components/show_errors';
+import ClearButton from '../components/picture/clear_button';
+
+const pickersRow = {
+  paddingLeft: 0,
+};
+
 
 
 class ImagePickerGroup extends Component {
-
   constructor(props) {
     super(props);
-    this.showImageSelect = this.showImageSelect.bind(this);
-    this.closeImageSelect = this.closeImageSelect.bind(this);
-    this.handlePictureSelect = this.handlePictureSelect.bind(this);
-
     this.state = {
-      showModal: false,
-      pictureId: null,
-      pictureUrls: this.props.pictures,
-      pictureValues: [],
-      picker: {},
+      errors: null,
+      pictures: [...this.props.pictures],
+      values: ['', null, null],
+      pickerIndex: null,
+      keys: [1000, 2000, 3000],           //I'm not sure that some one going to clear picture many times; more that 1000 times!
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClear = this.handleClear.bind(this);
+
+    this.validatesFile = this.validatesFile.bind(this);
   }
 
-  showImageSelect(pictureId) {
-    this.setState({
-      showModal: true,
-      pictureId,
-      picker: {
-        inputId: `${this.props.model}_${this.props.names[pictureId]}_file`,
-      },
-    });
-  }
+  handleChange(e) {
+    if (this.validatesFile(e.target.value)) {
+      const values = [...this.state.values];
+      values[this.state.pickerIndex] = e.target.value;
 
-  closeImageSelect() {
-    this.setState({
-      showModal: false,
-    });
-  }
-
-  handlePictureSelect(e) {
-    console.log('Picture selected: ', e.files);
-    this.closeImageSelect();
-    // change picture at image_picker
-    let reader = new FileReader();
-    reader.onload = (res) => {
-      let purls = this.state.pictureUrls;
-      purls[this.state.pictureId] = res.target.result;
-      let pvals = this.state.pictureValues;
-      pvals[this.state.pictureId] = e.value;
-      console.log("Set value: ",e.value);
-      //this.setState({
-      //  pictureUrls: purls,
-      //});
-      console.log("Set picture: ", res.target.result, " to index: ", this.state.pictureId);
+      const reader = new FileReader();
+      reader.onload = (res) => {
+        const pictures = [...this.state.pictures];
+        pictures[this.state.pickerIndex] = res.target.result;
+        this.setState({
+          pictures,
+          // values,
+        });
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
-    reader.readAsDataURL(e.files[0]);
+  }
+
+  handleClick(pickerIndex) {
+    this.setState({
+      pickerIndex,
+    });
+  }
+
+  handleClear(index) {
+    const values = [...this.state.values];
+    const pictures = [...this.state.pictures];
+    const keys = [...this.state.keys];
+    pictures[index] = '';
+    values[index] = '';
+    keys[index] += 1;
+    this.setState({
+      pictures,
+      values,
+      keys,
+    });
+  }
+
+  validatesFile(fileName) {
+    if (fileName === '') return true;
+    if (fileName !== '' && !(/\.(gif|jpg|jpeg|tiff|png)$/i).test(fileName)) {
+      this.setState({
+        errors: ['Unsupported file type'],
+      });
+      return false;
+    }
+    this.setState({
+      errors: null,
+    });
+    return true;
   }
 
   render() {
     return (
-      <div>
-        <div className="form-group">
-          <label className="control-label col-sm-2" htmlFor="name">{'Images'}</label>
-          { this.props.names.map((item, index) => (
-            <ImagePicker
-              name={item}
-              size={3}
-              image={this.state.pictureUrls[index]}
-              onClick={() => (this.showImageSelect(index))}
-              model={this.props.model}
-              value={this.state.pictureValues[index]}
-            />
+      <div className="form-group">
+        <label className="control-label col-sm-2" htmlFor="name">{'Images'}</label>
+        <div className="col-sm-7" style={pickersRow}>
+          {this.state.errors ? <ShowErrors errors={this.state.errors} /> : ''}
+          {this.props.names.map((item, index) => (
+            <div>
+              <PicturePicker
+                name={item}
+                size={4}
+                imageUrl={this.state.pictures[index]}
+                model={this.props.model}
+                onClick={() => (this.handleClick(index))}
+                onChange={this.handleChange}
+                onClear={() => (this.handleClear(index))}
+                inputKey={this.state.keys[index]}
+              />
+            </div>
           ))}
         </div>
-        <PictureSelect
-          isOpen={this.state.showModal}
-          onClose={this.closeImageSelect}
-          onSelect={this.handlePictureSelect}
-          picker = {this.state.picker}
-          id={this.state.pictureId}
-          externalId={this.state.externalId}
-        />
       </div>
     );
   }
+
 }
 
 ImagePickerGroup.propTypes = {

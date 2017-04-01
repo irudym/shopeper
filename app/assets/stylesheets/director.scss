@@ -183,6 +183,21 @@ h1 {
   height: 3rem;
 }
 
+.menu-hover:hover {
+  background: $side-menu-highlight;
+}
+
+.form-control:focus {
+  box-shadow: 0px 0px 3px 1px $side-menu-highlight;
+  border-color: $side-menu-highlight;
+}
+
+.select-focus:focus {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
 
 @media (max-width: $screen-xs-max) {
   .side-bar {

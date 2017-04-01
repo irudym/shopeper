@@ -1,5 +1,5 @@
 class Brand < DirectorRecord
-  belongs_to :picture
+  belongs_to :picture, optional: true
   validates :name, presence: true
 
 end

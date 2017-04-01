@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326114449) do
+ActiveRecord::Schema.define(version: 20170331163950) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170326114449) do
     t.string   "hex_code"
   end
 
+  create_table "item_pictures", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "picture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_pictures_on_item_id"
+    t.index ["picture_id"], name: "index_item_pictures_on_picture_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.integer  "shop_id"
@@ -39,14 +48,19 @@ ActiveRecord::Schema.define(version: 20170326114449) do
     t.datetime "updated_at",                  null: false
     t.boolean  "trash",       default: false
     t.text     "description"
+    t.integer  "brand_id"
+    t.integer  "type_id"
+    t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["shop_id"], name: "index_items_on_shop_id"
+    t.index ["type_id"], name: "index_items_on_type_id"
   end
 
   create_table "malls", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "trash",      default: false
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -64,9 +78,10 @@ ActiveRecord::Schema.define(version: 20170326114449) do
   create_table "shops", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "mall_id"
+    t.boolean  "trash",      default: false
     t.index ["mall_id"], name: "index_shops_on_mall_id"
   end
 

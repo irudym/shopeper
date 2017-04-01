@@ -1,12 +1,53 @@
 import React, { PropTypes, Component } from 'react';
-import FormSubmit from '../components/form_submit';
-import FileInput from '../components/file_input';
-import FormButton from '../components/form_button';
-import SelectWithUrl from '../hocs/select_with_url';
-import ModalView from '../components/modal/modal_view';
-import ShowError from '../components/show_error';
+import FormSubmit from '../form_submit';
+import FileInput from '../file_input';
+import FormButton from '../form_button';
+import SelectWithUrl from '../../hocs/select_with_url';
+import ModalView from '../modal/modal_view';
+import ShowError from '../show_error';
 
 const SelectPictures = SelectWithUrl('/director/pictures.json');
+
+const PictureSelect = ({ isOpen, onClose, onAdd, onSelect, onUpload, imageUrl, errors }) => (
+  <ModalView
+    isOpen={isOpen}
+    title="Select a picture"
+    onClose={onClose}
+    contentLabel="image selector"
+  >
+    <div className="col-sm-9">
+      {errors ? <ShowError errors={errors} /> : ''}
+      <FormSubmit method={null}>
+        <SelectPictures name="picture" onSelect={onSelect} />
+        <FileInput
+          name="upload"
+          onChange={onUpload}
+        />
+        <FormButton title="Add picture" onClick={onAdd} />
+      </FormSubmit>
+    </div>
+    <div className="col-sm-2 thumbnail">
+      {imageUrl ? <img src={imageUrl} alt="preview" /> : ''}
+    </div>
+  </ModalView>
+);
+
+PictureSelect.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onUpload: PropTypes.func.isRequired,
+  imageUrl: PropTypes.string,
+  errors: PropTypes.arrayOf(PropTypes.string),
+};
+
+PictureSelect.defaultProps = {
+  imageUrl: null,
+  errors: [],
+};
+
+/*
 
 class PictureSelect extends Component {
   constructor(props) {
@@ -87,23 +128,7 @@ class PictureSelect extends Component {
 
   render() {
     return (
-      <ModalView
-        isOpen={this.props.isOpen}
-        title="Select a picture"
-        onClose={this.handleClose}
-        contentLabel="image selector"
-      >
-        {this.state.errors ? <ShowError text={this.state.errors} /> : '' }
-        <FormSubmit method={null}>
-          <SelectPictures name="picture" onSelect={this.handleSelect} />
-          <FileInput
-            name="upload"
-            onChange={this.handleInput}
-            externalId={this.props.picker.inputId}
-          />
-          <FormButton title="Add picture" onClick={this.handleAddPicture} />
-        </FormSubmit>
-      </ModalView>
+
     );
   }
 }
@@ -123,5 +148,6 @@ PictureSelect.propTypes = {
 PictureSelect.defaultProps = {
   externalId: null,
 }
+*/
 
 export default PictureSelect;

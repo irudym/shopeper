@@ -1,0 +1,17 @@
+%tr
+  %td
+    %a{href: edit_director_item_path(item_restore)}
+      = item_restore.name
+  %td
+    = item_restore.type.name
+  %td
+    = item_restore.brand.name
+  %td
+    = item_restore.description
+  %td
+    - item_restore.pictures.each do |picture|
+      = image_tag picture.image.url(:thumb)
+  %td
+    = link_to "#{icon('undo')}".html_safe, {controller: :items, action: "update", id: item_restore.id, item: {trash: false}}, method: :put
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_item_path(item_restore), method: :delete, confirm: 'Are you sure ?'

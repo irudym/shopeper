@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import SelectOption from './select_option';
+import {colors} from '../../styles/common_styles';
 
 
 const listStyle = {
   maxHeight: '17rem',
   overflow: 'auto',
-  border: '1px solid #D8DDE1',
+  border: `1px solid ${colors.colorHighlight}`,
   borderRadius: '0 0 3px 3px',
   position: 'absolute',
   backgroundColor: '#fff',
@@ -14,6 +15,8 @@ const listStyle = {
   padding: 0,
   top: 34,
   listStyle: 'none',
+  width: '100%',
+  boxShadow: `0px 0px 3px 1px ${colors.colorHighlight}`,
 };
 
 /**

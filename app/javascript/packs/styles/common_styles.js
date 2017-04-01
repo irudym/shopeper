@@ -6,4 +6,5 @@ export const colors = {
   gray: '#d8dde1',
   darkGray: '#8c959e',
   colorBrown: '#c2ac81',
+  colorHighlight: '#d3b68c',
 };

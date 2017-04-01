@@ -1,3 +1,15 @@
 = section_menu(@menu)
 = show_notice(notice)
-
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Type
+          %th Brand
+          %th Description
+          %th Pictures
+          %th Delete
+      %tbody
+        = render partial: "item", collection: @items

@@ -15,8 +15,11 @@ const selectArrowZone = {
 const selectOption = {
   position: 'absolute',
   top: 7,
-  left: 28,
+  left: 13,
   fontWeight: 'normal',
+  WebkitUserSelect: 'none', /* Chrome/Safari */
+  MozUserSelect: 'none', /* Firefox */
+  msUserSelect: 'none', /* IE10+ */
 };
 
 const selectArrow = {
@@ -45,6 +48,10 @@ const inputStyle = {
   backgroundColor: 'transparent',
 };
 
+const selectInput = {
+  position: 'relative',
+};
+
 
 const SelectInput = ({ model, name, onChange, onClick, expanded, children, option, showOption, value }) => (
   <div className="form-group" style={selectStyle} >
@@ -62,14 +69,14 @@ const SelectInput = ({ model, name, onChange, onClick, expanded, children, optio
           className="select-arrow"
           style={expanded ? selectArrowExpanded : selectArrow}
           onMouseDown={(e) => {
-            if(expanded) {
-              console.log("Trying to close the select");
+            if (expanded) {
               e.stopPropagation();
+              e.preventDefault();
             }
           }}
         />
       </span>
-      <div className="select-input" >
+      <div className="select-input" style={selectInput}>
         {option.value !== '' && showOption ?
           <label htmlFor={`${model}_${name}_select`} className="select-option" style={selectOption}>{option.value}</label>
           :
@@ -78,7 +85,7 @@ const SelectInput = ({ model, name, onChange, onClick, expanded, children, optio
         <input
           id={`${model}_${name}_select`}
           type="text"
-          className="form-control"
+          className="form-control select-focus"
           onClick={
             expanded ?
               null
@@ -102,7 +109,7 @@ const SelectInput = ({ model, name, onChange, onClick, expanded, children, optio
 );
 
 SelectInput.propTypes = {
-  model: PropTypes.string.isRequired,
+  model: PropTypes.string,
   name: PropTypes.string.isRequired,
   children: React.PropTypes.element.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -121,6 +128,7 @@ SelectInput.defaultProps = {
     id: -1,
     value: '',
   },
+  model: '',
 };
 
 export default SelectInput;
