@@ -47,6 +47,10 @@ h1 {
     background: $side-menu-highlight;
   }
 
+  .menu-active {
+    background: $side-menu-highlight;
+  }
+
   .icon {
     width: 2.5rem;
     display: inline-block;

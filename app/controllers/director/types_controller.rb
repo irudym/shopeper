@@ -96,6 +96,7 @@ class Director::TypesController < DirectorController
 
     def set_title
       @title = 'Types'
+      @current_menu = 'types'
     end
 
     def set_menu

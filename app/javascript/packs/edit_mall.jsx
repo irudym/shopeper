@@ -22,7 +22,7 @@ const EditMall = ({ data }) => {
       <TextInput name="name" model="mall" defaultValue={data.name} />
       <TextInput name="address" model="mall" defaultValue={data.address} />
       <DescriptionInput name="description" model="mall" defaultValue={data.description} />
-      <SubmitButton title="Upload Mall" />
+      <SubmitButton title="Update Mall" />
     </FormSubmit>
   );
 };

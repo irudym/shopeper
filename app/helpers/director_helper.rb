@@ -1,5 +1,5 @@
 module DirectorHelper
-  def side_menu
+  def side_menu(active)
     menu_items = [
         {
             text: 'dashboard',
@@ -48,13 +48,13 @@ module DirectorHelper
         }
     ]
     menu = menu_items.inject('') do |acc, item|
-      acc + "<a href='#{item[:url]}'><div class='menu-item'><li><div class='icon'>#{icon(item[:icon])}</div><div class='hidden-xs menu-text'>#{sanitize item[:text]}</div></li></div></a>"
+      acc + "<a href='#{item[:url]}'><div class='menu-item #{active == item[:text] ? 'menu-active' : ''}'><li><div class='icon'>#{icon(item[:icon])}</div><div class='hidden-xs menu-text'>#{sanitize item[:text]}</div></li></div></a>"
     end
     "<ul>#{menu}</ul>".html_safe
   end
 
-  def side_bar
-    "<div class='side-bar'><div class='logo'><div class='hidden-xs'>shoPEPEr</div><div class='visible-xs'>PE</div></div>#{side_menu}</div>".html_safe
+  def side_bar(active)
+    "<div class='side-bar'><div class='logo'><div class='hidden-xs'>shoPEPEr</div><div class='visible-xs'>PE</div></div>#{side_menu(active)}</div>".html_safe
   end
 
   def title(text)

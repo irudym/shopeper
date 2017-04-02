@@ -9,7 +9,7 @@
   %body
     .container-fluid
       .row
-        = side_bar
+        = side_bar(@current_menu)
         .container-fluid.side-bar-offset
           = title(@title)
           = yield

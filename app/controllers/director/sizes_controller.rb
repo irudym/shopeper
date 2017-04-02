@@ -85,6 +85,7 @@ class Director::SizesController < DirectorController
 
     def set_title
       @title = 'Sizes'
+      @current_menu = 'sizes'
     end
 
     def set_menu

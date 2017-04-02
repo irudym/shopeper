@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401084731) do
+ActiveRecord::Schema.define(version: 20170402172904) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 20170401084731) do
     t.datetime "image_updated_at"
     t.boolean  "trash",              default: false
     t.text     "description"
+  end
+
+  create_table "shop_in_malls", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.integer  "mall_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mall_id"], name: "index_shop_in_malls_on_mall_id"
+    t.index ["shop_id"], name: "index_shop_in_malls_on_shop_id"
   end
 
   create_table "shops", force: :cascade do |t|
