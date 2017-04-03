@@ -2,12 +2,10 @@ import React, { PropTypes, Component } from 'react';
 
 import PicturePicker from '../components/picture/picture_picker';
 import ShowErrors from '../components/show_errors';
-import ClearButton from '../components/picture/clear_button';
 
 const pickersRow = {
   paddingLeft: 0,
 };
-
 
 
 class ImagePickerGroup extends Component {

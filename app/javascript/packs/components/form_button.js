@@ -1,16 +1,10 @@
 import React, { PropTypes } from 'react';
+import Button from './button';
 
-const FormButton = ({ title, type, name, onClick }) => (
+const FormButton = props => (
   <div className="form-group">
     <div className="col-sm-offset-2 col-sm-4">
-      <button
-        className="button button-gray"
-        type={type}
-        name={name}
-        onClick={onClick}
-      >
-        {title}
-      </button>
+      <Button {...props} />
     </div>
   </div>
 );

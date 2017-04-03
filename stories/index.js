@@ -8,6 +8,7 @@ import SelectContainer from '../app/javascript/packs/containers/select/select_co
 import ModalHeader from '../app/javascript/packs/components/modal/modal_header';
 import ImagePickerGroup from '../app/javascript/packs/containers/image_picker_group';
 import FileInput from '../app/javascript/packs/components/file_input';
+import SelectItems from '../app/javascript/packs/components/select_items';
 
 // import bootstrap scss
 import './styles/bootstrap.min.css';
@@ -73,3 +74,8 @@ storiesOf('FileInput', module)
   .add('with name', () => (
     <FileInput name="picture" model="item" />
   ));
+
+storiesOf("SelectItems", module)
+    .add('with items', () => (
+      <SelectItems options={options} onAdd={action('Items Add')} onClick={action('Items click')} />
+    ));
