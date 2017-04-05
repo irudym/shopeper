@@ -1,9 +1,4 @@
 import React, { PropTypes } from 'react';
-import Label from '../label';
-
-const selectStyle = {
-  boxSizing: 'border-box',
-};
 
 const selectArrowZone = {
   cursor: 'pointer',
@@ -53,57 +48,54 @@ const selectInput = {
 };
 
 
-const SelectInput = ({ model, name, onChange, onClick, expanded, children, option, showOption, value }) => (
-  <div className="form-group" style={selectStyle} >
-    <Label name={name} />
-    <div className="col-sm-4">
-      <input
-        type="hidden"
-        name={`${model}[${name}]`}
-        id={`${model}_${name}`}
-        value={option.id}
+const SelectInput = ({ model, name, onChange, onClick, expanded, children, option, showOption, value, className }) => (
+  <div className={className}>
+    <input
+      type="hidden"
+      name={`${model}[${name}]`}
+      id={`${model}_${name}`}
+      value={option.id}
+    />
+    <span className="select-arrow-zone" style={selectArrowZone}>
+      <label
+        htmlFor={expanded ? ' ' : `${model}_${name}_select`}
+        className="select-arrow"
+        style={expanded ? selectArrowExpanded : selectArrow}
+        onMouseDown={(e) => {
+          if (expanded) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        }}
       />
-      <span className="select-arrow-zone" style={selectArrowZone}>
-        <label
-          htmlFor={expanded ? ' ' : `${model}_${name}_select`}
-          className="select-arrow"
-          style={expanded ? selectArrowExpanded : selectArrow}
-          onMouseDown={(e) => {
-            if (expanded) {
-              e.stopPropagation();
-              e.preventDefault();
-            }
-          }}
-        />
-      </span>
-      <div className="select-input" style={selectInput}>
-        {option.value !== '' && showOption ?
-          <label htmlFor={`${model}_${name}_select`} className="select-option" style={selectOption}>{option.value}</label>
-          :
-          ''
+    </span>
+    <div className="select-input" style={selectInput}>
+      {option.value !== '' && showOption ?
+        <label htmlFor={`${model}_${name}_select`} className="select-option" style={selectOption}>{option.value}</label>
+        :
+        ''
+      }
+      <input
+        id={`${model}_${name}_select`}
+        type="text"
+        className="form-control select-focus"
+        onClick={
+          expanded ?
+            null
+            :
+            onClick
         }
-        <input
-          id={`${model}_${name}_select`}
-          type="text"
-          className="form-control select-focus"
-          onClick={
-            expanded ?
-              null
-              :
-              onClick
-          }
-          onBlur={
-            expanded ?
-              onClick
-              :
-              null
-          }
-          onChange={onChange}
-          style={inputStyle}
-          value={value}
-        />
-        {children}
-      </div>
+        onBlur={
+          expanded ?
+            onClick
+            :
+            null
+        }
+        onChange={onChange}
+        style={inputStyle}
+        value={value}
+      />
+      {children}
     </div>
   </div>
 );
@@ -121,6 +113,7 @@ SelectInput.propTypes = {
   }),
   showOption: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 SelectInput.defaultProps = {
@@ -129,6 +122,7 @@ SelectInput.defaultProps = {
     value: '',
   },
   model: '',
+  className: 'col-sm-4',
 };
 
 export default SelectInput;

@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Shopeper
 
-Things you may want to cover:
+Collecting data from shop warehouses and create recommendation and search capability.
 
-* Ruby version
+## Description
+The application based on Ruby-on-Rails solution and Facebook React library for frontend
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Installation
+The first step is to download all JS packages, for that, please run following command
+yarn

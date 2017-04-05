@@ -55,27 +55,27 @@ class SelectContainer extends Component {
   }
 
   render() {
-    const { model, name, options } = this.props;
+    const { model, name, options, className } = this.props;
     return (
-      <div>
-        <SelectInput
-          model={model}
-          name={name}
+      <SelectInput
+        model={model}
+        name={name}
+        expanded={this.state.expanded}
+        onClick={this.handleExpand}
+        onChange={this.handleChange}
+        option={this.state.option}
+        showOption={this.state.showOption}
+        value={this.state.value}
+        className={className}
+      >
+        { this.props.children }
+        <SelectList
           expanded={this.state.expanded}
-          onClick={this.handleExpand}
-          onChange={this.handleChange}
-          option={this.state.option}
-          showOption={this.state.showOption}
-          value={this.state.value}
-        >
-          <SelectList
-            expanded={this.state.expanded}
-            options={options}
-            onSelect={this.handleSelect}
-            filter={this.state.filter}
-          />
-        </SelectInput>
-      </div>
+          options={options}
+          onSelect={this.handleSelect}
+          filter={this.state.filter}
+        />
+      </SelectInput>
     );
   }
 }
@@ -92,11 +92,15 @@ SelectContainer.propTypes = {
     id: PropTypes.number,
     value: PropTypes.string,
   }),
+  children: PropTypes.element,
+  className: PropTypes.string,
 };
 
 SelectContainer.defaultProps = {
   onSelect: null,
   defaultValue: {},
+  children: null,
+  className: '',
 };
 
 export default SelectContainer;

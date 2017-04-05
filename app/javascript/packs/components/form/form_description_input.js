@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import Label from './label';
+import FormLabel from './form_label';
 
-const NameInput = ({ model, name, onChange, defaultValue }) => (
+const FormDescriptionInput = ({ model, name, onChange, defaultValue }) => (
   <div className="form-group">
-    <Label name={name} htmlFor={`${model}_${name}`} />
+    <FormLabel name={name} htmlFor={`${model}_${name}`} />
     <div className="col-sm-4">
-      <input
+      <textarea
         className="form-control"
         name={`${model}[${name}]`}
         id={`${model}_${name}`}
@@ -17,18 +17,18 @@ const NameInput = ({ model, name, onChange, defaultValue }) => (
   </div>
 );
 
-NameInput.propTypes = {
+FormDescriptionInput.propTypes = {
   model: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
   defaultValue: PropTypes.string,
 };
 
-NameInput.defaultProps = {
+FormDescriptionInput.defaultProps = {
   model: '',
   name: '',
   onChange: null,
   defaultValue: '',
 };
 
-export default NameInput;
+export default FormDescriptionInput;

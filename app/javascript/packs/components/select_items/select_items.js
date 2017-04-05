@@ -1,32 +1,52 @@
 import React, { PropTypes } from 'react';
 import SelectContainer from '../../containers/select/select_container';
 import Button from '../button';
+import ItemList from './item_list';
 
-const SelectItems = ({ options, onAdd, onSelect, onRemove, values, model, name }) => {
-  return (
+
+const buttonStyle = {
+  height: '34px',
+  paddingTop: 0,
+  paddingBottom: 0,
+  fontWeight: 'bold',
+  fontSize: '2rem',
+};
+
+const buttonGroup = {
+  paddingLeft: 0,
+  display: 'inline-block',
+};
+
+
+const SelectItems = ({ options, onAdd, onSelect, onRemove, values, model, name, className }) => (
+  <div className={className}>
+    <input
+      type="hidden"
+      name={`${model}[${name}]`}
+      id={`${model}_${name}`}
+      value={JSON.stringify(values.map(item => (
+        item.id
+      )))}
+    />
     <div>
-      <input
-        type="hidden"
-        name={`${model}[${name}]`}
-        id={`${model}_${name}`}
-        value={values}
+      <SelectContainer
+        model={model}
+        name="select"
+        options={options}
+        onSelect={onSelect}
+        className="col-xs-10 relative"
       />
-      <div className="select-group">
-        <SelectContainer
-          model={model}
-          name={`select_${name}`}
-          options={options}
-          onSelect={onSelect}
-        />
+      <div style={buttonGroup} className="col-xs-2">
         <Button
-          className="col-sm-2"
-          title="Add"
+          title="+"
           onClick={onAdd}
+          style={buttonStyle}
         />
       </div>
+      <ItemList onRemove={onRemove} items={values} className="col-xs-10 relative" />
     </div>
-  );
-};
+  </div>
+);
 
 SelectItems.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
@@ -42,11 +62,14 @@ SelectItems.propTypes = {
   })).isRequired,
   model: PropTypes.string,
   name: PropTypes.string,
+  className: PropTypes.string,
 };
 
 SelectItems.defaultProps = {
   model: '',
   name: '',
+  values: [],
+  className: '',
 };
 
 export default SelectItems;

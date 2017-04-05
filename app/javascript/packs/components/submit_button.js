@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import FormButton from './form_button';
+import FormButton from './form/form_button';
 
 const SubmitButton = ({ title }) => (
   <FormButton type="submit" name="commit" title={title} />

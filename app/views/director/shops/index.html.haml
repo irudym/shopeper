@@ -7,13 +7,8 @@
         %tr
           %th Name
           %th Address
+          %th Description
+          %th Brands
           %th
-          %th
-          %th
-    %tbody
-      - @shops.each do |shop|
-        %tr
-          %td= shop.name
-          %td= shop.address
-          %td
-            = link_to "#{icon('trash')}".html_safe, director_shop_path(shop), method: :delete, confirm: 'Are you sure ?'
+      %tbody
+        = render partial: "shop", collection: @shops

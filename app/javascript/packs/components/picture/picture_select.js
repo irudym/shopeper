@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import FormSubmit from '../form_submit';
 import FileInput from '../file_input';
-import FormButton from '../form_button';
+import FormButton from '../form/form_button';
 import SelectWithUrl from '../../hocs/select_with_url';
 import ModalView from '../modal/modal_view';
-import ShowError from '../show_error';
+import ShowErrors from '../show_errors';
 
 const SelectPictures = SelectWithUrl('/director/pictures.json');
 
@@ -16,7 +16,7 @@ const PictureSelect = ({ isOpen, onClose, onAdd, onSelect, onUpload, imageUrl, e
     contentLabel="image selector"
   >
     <div className="col-sm-9">
-      {errors ? <ShowError errors={errors} /> : ''}
+      {errors ? <ShowErrors errors={errors} /> : ''}
       <FormSubmit method={null}>
         <SelectPictures name="picture" onSelect={onSelect} />
         <FileInput

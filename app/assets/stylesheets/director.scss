@@ -1,3 +1,4 @@
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -7,6 +8,8 @@
 @import "bootstrap-select.min";
 
 @import "director/colors";
+
+//$screen-xs-max: 768px;
 
 html {
   font-size: 12px;
@@ -49,6 +52,7 @@ h1 {
 
   .menu-active {
     background: $side-menu-highlight;
+    border-right: 8px solid $color-darkBrown;
   }
 
   .icon {
@@ -201,6 +205,32 @@ h1 {
   border-bottom-right-radius: 0;
 }
 
+.relative {
+  position: relative;
+  padding-left: 0;
+}
+
+.hidden-btn {
+  background: transparent;
+  color: $color-darkBrown;
+  opacity: 0;
+  transition: opacity 900ms ease-in-out;
+}
+
+.hidden-btn:hover {
+  color: $color-veryDarkBrown;
+}
+
+.hidden-btn:focus {
+  outline: 0;
+  border: none;
+}
+
+.hidden-button:hover {
+  .hidden-btn {
+    opacity: 1;
+  }
+}
 
 
 @media (max-width: $screen-xs-max) {

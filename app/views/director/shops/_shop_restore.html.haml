@@ -1,0 +1,13 @@
+%tr
+  %td
+    = link_to shop_restore.name, edit_director_shop_path(shop_restore)
+  %td
+    = shop_restore.address
+  %td
+    = shop_restore.description
+  %td
+    = shop_restore.list_of_brands
+  %td
+    = link_to "#{icon('undo')}".html_safe, {controller: :shops, action: "update", id: shop_restore.id, shop: {trash: false}}, method: :put
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_shop_path(shop_restore), method: :delete, confirm: 'Are you sure ?'

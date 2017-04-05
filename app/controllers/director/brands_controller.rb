@@ -75,6 +75,7 @@ class Director::BrandsController < DirectorController
 
   def set_title
     @title = 'Brands'
+    @current_menu = 'brands'
   end
 
   def set_menu

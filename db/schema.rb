@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402172904) do
+ActiveRecord::Schema.define(version: 20170404155338) do
+
+  create_table "brand_in_shops", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.integer  "brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_brand_in_shops_on_brand_id"
+    t.index ["shop_id"], name: "index_brand_in_shops_on_shop_id"
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +38,15 @@ ActiveRecord::Schema.define(version: 20170402172904) do
     t.datetime "updated_at",                 null: false
     t.boolean  "trash",      default: false
     t.string   "hex_code"
+  end
+
+  create_table "item_in_shops", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "shop_in_mall_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["item_id"], name: "index_item_in_shops_on_item_id"
+    t.index ["shop_in_mall_id"], name: "index_item_in_shops_on_shop_in_mall_id"
   end
 
   create_table "item_pictures", force: :cascade do |t|
@@ -90,11 +108,12 @@ ActiveRecord::Schema.define(version: 20170402172904) do
   create_table "shops", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "mall_id"
-    t.boolean  "trash",      default: false
-    t.index ["mall_id"], name: "index_shops_on_mall_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "trash",       default: false
+    t.text     "description"
+    t.integer  "brand_id"
+    t.index ["brand_id"], name: "index_shops_on_brand_id"
   end
 
   create_table "sizes", force: :cascade do |t|

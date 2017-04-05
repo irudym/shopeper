@@ -17,16 +17,19 @@ class Director::MallsController < DirectorController
   # GET /malls/new
   def new
     @mall = Mall.new
+    @shops = Shop.to_options.to_json
   end
 
   # GET /malls/1/edit
   def edit
+    @shops = Shop.to_options.to_json
+    @shops_in_mall = @mall.shops.to_options.to_json
   end
 
   def trash
     @malls = Mall.where(trash: true)
     @menu = [
-        {text: 'New type', url: new_director_mall_path, icon: 'pencil'},
+        {text: 'New mall', url: new_director_mall_path, icon: 'pencil'},
         {text: "All (#{Mall.where(trash: false).count})", url: director_malls_path, icon: 'tag'}
     ]
   end
@@ -35,13 +38,18 @@ class Director::MallsController < DirectorController
   # POST /malls.json
   def create
     @mall = Mall.new(mall_params)
+    shops_in_mall = Shop.where(id: JSON.parse(params[:mall][:shops_in_mall])) if params[:mall][:shops_in_mall]
+    @mall.shops << shops_in_mall
 
     respond_to do |format|
       if @mall.save
         format.html { redirect_to director_malls_path, notice: 'Mall was successfully created.' }
         format.json { render :show, status: :created, location: @mall }
       else
-        format.html { render :new }
+        format.html {
+          @shops = Shop.to_options.to_json
+          render :new
+        }
         format.json { render json: @mall.errors, status: :unprocessable_entity }
       end
     end
@@ -84,6 +92,7 @@ class Director::MallsController < DirectorController
 
     def set_title
       @title = 'Malls'
+      @current_menu = 'malls'
     end
 
     def set_menu

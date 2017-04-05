@@ -5,4 +5,15 @@ class DirectorRecord < ActiveRecord::Base
   def name=(val)
     write_attribute(:name, val.downcase)
   end
+
+  class << self
+    def to_options
+      self.where(trash: false).collect do |item|
+        {
+            id: item[:id],
+            value: item[:name]
+        }
+      end
+    end
+  end
 end

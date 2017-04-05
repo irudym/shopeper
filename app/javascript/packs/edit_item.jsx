@@ -4,11 +4,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import NameInput from './components/name_input';
-import SelectContainer from './containers/select/select_container';
+import FormTextInput from './components/form/form_text_input';
+import FormSelectContainer from './containers/form/form_select_container';
 import SubmitButton from './components/submit_button';
 import FormSubmit from './components/form_submit';
-import DescriptionInput from './components/description_input';
+import FormDescriptionInput from './components/form/form_description_input';
 import withData from './hocs/with_data';
 
 
@@ -24,8 +24,8 @@ const EditItem = ({ data, types, brands }) => {
     return res;
   }, {});
 
-  const SelectTypes = withData(SelectContainer, types, typesDefault);
-  const SelectBrands = withData(SelectContainer, brands, brandsDefault);
+  const SelectTypes = withData(FormSelectContainer, types, typesDefault);
+  const SelectBrands = withData(FormSelectContainer, brands, brandsDefault);
 
   return (
     <FormSubmit
@@ -35,8 +35,8 @@ const EditItem = ({ data, types, brands }) => {
       // enctype="multipart/form-data"
       method="patch"
     >
-      <NameInput name="name" model="item" defaultValue={data.name} />
-      <DescriptionInput name="description" model="item" defaultValue={data.description} />
+      <FormTextInput name="name" model="item" defaultValue={data.name} />
+      <FormDescriptionInput name="description" model="item" defaultValue={data.description} />
       <SelectTypes name="type" model="item" />
       <SelectBrands name="brand" model="item" />
       <SubmitButton title="Update Item" />

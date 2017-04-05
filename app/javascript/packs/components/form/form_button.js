@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Button from './button';
+import Button from '../button';
 
 const FormButton = props => (
   <div className="form-group">

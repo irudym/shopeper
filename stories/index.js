@@ -5,14 +5,16 @@ import Welcome from './Welcome';
 import SelectInput from '../app/javascript/packs/components/select/select_input';
 import SelectList from '../app/javascript/packs/components/select/select_list';
 import SelectContainer from '../app/javascript/packs/containers/select/select_container';
+import FormSelectContainer from '../app/javascript/packs/containers/form/form_select_container';
 import ModalHeader from '../app/javascript/packs/components/modal/modal_header';
 import ImagePickerGroup from '../app/javascript/packs/containers/image_picker_group';
 import FileInput from '../app/javascript/packs/components/file_input';
-import SelectItems from '../app/javascript/packs/components/select_items';
+import SelectItems from '../app/javascript/packs/components/select_items/select_items';
+import SelectItemsContainer from '../app/javascript/packs/containers/select/select_items_container';
 
 // import bootstrap scss
 import './styles/bootstrap.min.css';
-// import '../app/assets/stylesheets/director.scss';
+import '../app/assets/stylesheets/director.scss';
 
 storiesOf('Welcome', module)
   .add('to Storybook', () => (
@@ -53,10 +55,10 @@ storiesOf('Select Container', module)
   .add('with 3 options', () => (
     <div>
       <div className="row">
-    <SelectContainer model="test" name="Name" options={options} />
+    <FormSelectContainer model="test" name="Name" options={options} />
   </div>
   <div className="row">
-    <SelectContainer model="test" name="Name" options={options} />
+    <FormSelectContainer model="test" name="Name" options={options} />
   </div></div>
   ));
 
@@ -77,5 +79,18 @@ storiesOf('FileInput', module)
 
 storiesOf("SelectItems", module)
     .add('with items', () => (
-      <SelectItems options={options} onAdd={action('Items Add')} onClick={action('Items click')} />
+      <SelectItems
+        options={options}
+        onAdd={action('Items Add')}
+        onSelect={action('Items click')}
+        onRemove={action('remove item')}
+        values={options}
+      />
     ));
+
+storiesOf('SelectItemsContainer', module)
+      .add('with options', () => (
+        <SelectItemsContainer
+          options={options}
+        />
+      ));

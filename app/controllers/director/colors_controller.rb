@@ -60,6 +60,7 @@ class Director::ColorsController < DirectorController
 
   def set_title
     @title = 'Colors'
+    @current_menu = 'colors'
   end
 
   def set_color

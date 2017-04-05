@@ -1,6 +1,6 @@
 class Director::ItemsController < DirectorController
   before_action :set_title
-  before_action :set_menu, only: [:index, :new, :create, :trash]
+  before_action :set_menu, only: [:index]
   before_action :set_item, only: [:edit, :destroy, :update]
 
 
@@ -95,24 +95,15 @@ class Director::ItemsController < DirectorController
   end
 
   def edit
-    @types = Type.where(trash: false).collect do |item|
-      {
-          id: item[:id],
-          value: item[:name]
-      }
-    end
-    @brands = Brand.where(trash: false).collect do |item|
-      {
-          id: item[:id],
-          value: item[:name]
-      }
-    end
+    @types = Type.to_options
+    @brands = Brand.to_options
   end
 
   private
 
   def set_title
     @title = "Items"
+    @current_menu = 'items'
   end
 
   def set_menu

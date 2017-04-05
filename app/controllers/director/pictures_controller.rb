@@ -73,6 +73,7 @@ class Director::PicturesController < DirectorController
 
   def set_title
     @title = 'Pictures'
+    @current_menu = 'pictures'
   end
 
   def set_picture

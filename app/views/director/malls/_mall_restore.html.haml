@@ -4,6 +4,8 @@
   %td
     = mall_restore.address
   %td
+    = mall_restore.description
+  %td
     = link_to "#{icon('undo')}".html_safe, {controller: :malls, action: "update", id: mall_restore.id, mall: {trash: false}}, method: :put
   %td
     = link_to "#{icon('trash')}".html_safe, director_mall_path(mall_restore), method: :delete, confirm: 'Are you sure ?'
