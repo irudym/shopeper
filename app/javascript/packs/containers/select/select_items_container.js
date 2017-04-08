@@ -16,11 +16,13 @@ class SelectItemsContainer extends React.Component {
   }
 
   handleAdd() {
-    // add selected item to the list of values
-    // check that there is no element with the same id!
-    this.setState({
-      values: [...this.state.values, this.state.selectedItem.value],
-    });
+    if (this.state.selectedItem.value) {
+      // add selected item to the list of values
+      // check that there is no element with the same id!
+      this.setState({
+        values: [...this.state.values, this.state.selectedItem.value],
+      });
+    }
   }
 
   handleSelect(item) {

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   namespace :director do
 
+    get 'stock/trash'
+    resources :stock
+
     get 'types/trash'
     resources :types
 
@@ -14,7 +17,11 @@ Rails.application.routes.draw do
     end
 
     get 'malls/trash'
-    resources :malls
+    resources :malls do
+      member do
+        get :shops
+      end
+    end
 
     get 'items/trash'
     resources :items

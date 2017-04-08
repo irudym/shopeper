@@ -1,5 +1,5 @@
 class Director::MallsController < DirectorController
-  before_action :set_mall, only: [:show, :edit, :update, :destroy]
+  before_action :set_mall, only: [:show, :edit, :update, :destroy, :shops]
   before_action :set_menu, only: [:index, :new, :create, :trash]
   before_action :set_title
 
@@ -12,6 +12,11 @@ class Director::MallsController < DirectorController
   # GET /malls/1
   # GET /malls/1.json
   def show
+  end
+
+  # GET /malls/1/shops.json
+  def shops
+    @shops = @mall.shops.to_options
   end
 
   # GET /malls/new
@@ -58,12 +63,20 @@ class Director::MallsController < DirectorController
   # PATCH/PUT /malls/1
   # PATCH/PUT /malls/1.json
   def update
+
+    # update shops
+    shops_edit = JSON.parse(params[:mall][:shops_in_mall])
+
     respond_to do |format|
-      if @mall.update(mall_params)
+      if @mall.update_with_shops(mall_params, shops_edit)
         format.html { redirect_to director_malls_path, notice: 'Mall was successfully updated.' }
         format.json { render :show, status: :ok, location: @mall }
       else
-        format.html { render :edit }
+        format.html {
+          @shops = Shop.to_options.to_json
+          @shops_in_mall = @mall.shops.to_options.to_json
+          render :edit
+        }
         format.json { render json: @mall.errors, status: :unprocessable_entity }
       end
     end

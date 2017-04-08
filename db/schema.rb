@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404155338) do
+ActiveRecord::Schema.define(version: 20170407163307) do
 
   create_table "brand_in_shops", force: :cascade do |t|
     t.integer  "shop_id"
@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 20170404155338) do
   create_table "item_in_shops", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "shop_in_mall_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "trash",           default: false
+    t.integer  "quantity"
     t.index ["item_id"], name: "index_item_in_shops_on_item_id"
     t.index ["shop_in_mall_id"], name: "index_item_in_shops_on_shop_in_mall_id"
   end

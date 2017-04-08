@@ -1,6 +1,6 @@
 class Director::SizesController < DirectorController
   before_action :set_title
-  before_action :set_menu, only: [:index, :new, :create, :trash]
+  before_action :set_menu, only: [:index]
   before_action :set_size, only: [:show, :edit, :update, :destroy]
 
   # GET /sizes

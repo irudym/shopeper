@@ -22,6 +22,15 @@ module DirectorHelper
             icon: 'gift'
         },
         {
+            text: 'stock',
+            url:  director_stock_index_path,
+            icon: 'dropbox'
+        },
+        {
+            text: '__________',
+            url: ''
+        },
+        {
             text: 'pictures',
             url: director_pictures_path,
             icon: 'picture-o'

@@ -49,13 +49,18 @@ class Director::ShopsController < DirectorController
   # PATCH/PUT /malls/1
   # PATCH/PUT /malls/1.json
   def update
+    brands_in_shop = JSON.parse(params[:shop][:brands_in_shop])
+
     respond_to do |format|
       # TODO: need to update brands if changed
-      if @shop.update(shop_params)
+      if @shop.update_with_brands(shop_params, brands_in_shop)
         format.html { redirect_to director_shops_path, notice: 'Shop was successfully updated.' }
         format.json { render :show, status: :ok, location: @shop }
       else
-        format.html { render :edit }
+        format.html {
+          @brands = Brand.to_options.to_json
+          render :edit
+        }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end
