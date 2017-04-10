@@ -15,12 +15,27 @@ export default class NewRecord extends React.Component {
       mall: null,
       isAddRecordVisible: false,
       title: '',
+      item: null,
+      size: null,
+      color: null,
+      records: [],
+      record_id: 0,
+      qty: 0,
+      price: 0,
+      additions: {},
     };
 
     this.handleProceed = this.handleProceed.bind(this);
     this.handleMallSelect = this.handleMallSelect.bind(this);
     this.handleShopSelect = this.handleShopSelect.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleAddRecord = this.handleAddRecord.bind(this);
+    this.handleItemSelect = this.handleItemSelect.bind(this);
+    this.handleColorSelect = this.handleColorSelect.bind(this);
+    this.handleSizeSelect = this.handleSizeSelect.bind(this);
+    this.handleRecordRemove = this.handleRecordRemove.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handleQtyChange = this.handleQtyChange.bind(this);
   }
 
   handleProceed(e) {
@@ -31,6 +46,7 @@ export default class NewRecord extends React.Component {
       this.setState({
         isAddRecordVisible: true,
         title: `${this.state.shop.value} at ${this.state.mall.value}`,
+        records: [],
       });
     }
   }
@@ -45,6 +61,10 @@ export default class NewRecord extends React.Component {
       .then((shops) => {
         this.setState({
           shops,
+          additions: {
+            ...this.state.additions,
+            mall: item.value,
+          },
         });
       });
   }
@@ -52,6 +72,10 @@ export default class NewRecord extends React.Component {
   handleShopSelect(item) {
     this.setState({
       shop: item.value,
+      additions: {
+        ...this.state.additions,
+        shop: item.value,
+      },
     });
   }
 
@@ -61,19 +85,74 @@ export default class NewRecord extends React.Component {
     });
   }
 
+  handleItemSelect(value) {
+    this.setState({
+      item: value.value,
+    });
+  }
+
+  handleSizeSelect(value) {
+    this.setState({
+      size: value.value,
+    });
+  }
+
+  handleColorSelect(value) {
+    this.setState({
+      color: value.value,
+    });
+  }
+
+  handlePriceChange(value) {
+    this.setState({
+      price: value.target.value,
+    });
+  }
+
+  handleQtyChange(value) {
+    this.setState({
+      qty: value.target.value,
+    });
+  }
+
+  handleAddRecord() {
+    const { item, color, size } = this.state;
+    const price = { id: 0, value: this.state.qty };
+    const qty = { id: 0, value: this.state.price };
+    const record = {
+      id: this.state.record_id,
+      values: [item, color, size, qty, price],
+    };
+    this.setState({
+      records: [...this.state.records, record],
+      record_id: this.state.record_id + 1,
+    });
+  }
+
+  handleRecordRemove(e, id) {
+    e.preventDefault();
+    const records = this.state.records.filter(item => (
+      item.id !== id
+    ));
+    this.setState({
+      records,
+    });
+  }
+
   render() {
+    const { model, name, token, action } = this.props;
     return (
-      <div
-        className="form-horizontal"
-      >
+      <div className="form-horizontal">
         <FormSelectContainer
           options={this.props.malls}
           name="malls"
+          model={model}
           onSelect={this.handleMallSelect}
         />
         <FormSelectContainer
           options={this.state.shops}
           name="shops"
+          model={model}
           onSelect={this.handleShopSelect}
         />
         <FormButton
@@ -87,6 +166,20 @@ export default class NewRecord extends React.Component {
           items={this.props.items}
           sizes={this.props.sizes}
           colors={this.props.colors}
+          onItemSelect={this.handleItemSelect}
+          onSizeSelect={this.handleSizeSelect}
+          onColorSelect={this.handleColorSelect}
+          onPriceChange={this.handlePriceChange}
+          onQuantityChange={this.handleQtyChange}
+          onAdd={this.handleAddRecord}
+          records={this.state.records}
+          onRemove={this.handleRecordRemove}
+          token={token}
+          action={action}
+          id={`${model}_id`}
+          model={model}
+          name={name}
+          additionalParams={this.state.additions}
         />
       </div>
     );
@@ -110,4 +203,8 @@ NewRecord.propTypes = {
     id: PropTypes.number,
     value: PropTypes.string,
   })).isRequired,
+  model: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  action: PropTypes.string.isRequired,
 };

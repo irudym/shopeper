@@ -4,13 +4,13 @@ import { storiesOf, action, linkTo } from '@kadira/storybook';
 import Welcome from './Welcome';
 import SelectInput from '../app/javascript/packs/components/select/select_input';
 import SelectList from '../app/javascript/packs/components/select/select_list';
-import SelectContainer from '../app/javascript/packs/containers/select/select_container';
 import FormSelectContainer from '../app/javascript/packs/containers/form/form_select_container';
 import ModalHeader from '../app/javascript/packs/components/modal/modal_header';
 import ImagePickerGroup from '../app/javascript/packs/containers/image_picker_group';
 import FileInput from '../app/javascript/packs/components/file_input';
 import SelectItems from '../app/javascript/packs/components/select_items/select_items';
 import SelectItemsContainer from '../app/javascript/packs/containers/select/select_items_container';
+import AddRecord from '../app/javascript/packs/components/add_record';
 
 // import bootstrap scss
 import './styles/bootstrap.min.css';
@@ -41,9 +41,8 @@ storiesOf('Select Input', module)
     <SelectInput model="test" name="Name" options={options} onChange={action('changed')} expanded={false} />
   ))
   .add('with 3 options and expanded', () => (
-    <SelectInput model="test" name="Name" options={options} onChange={action('changed')} expanded={true}>
+    <SelectInput model="test" name="Name" options={options} onChange={action('changed')} >
       <SelectList
-        expanded={true}
         options={options}
         onSelect={action('onSelect')}
         filter={''}
@@ -55,11 +54,12 @@ storiesOf('Select Container', module)
   .add('with 3 options', () => (
     <div>
       <div className="row">
-    <FormSelectContainer model="test" name="Name" options={options} />
-  </div>
-  <div className="row">
-    <FormSelectContainer model="test" name="Name" options={options} />
-  </div></div>
+        <FormSelectContainer model="test" name="Name" options={options} />
+      </div>
+      <div className="row">
+        <FormSelectContainer model="test" name="Name" options={options} />
+      </div>
+    </div>
   ));
 
 storiesOf('ModalView Header', module)
@@ -92,5 +92,21 @@ storiesOf('SelectItemsContainer', module)
       .add('with options', () => (
         <SelectItemsContainer
           options={options}
+        />
+      ));
+
+storiesOf('Add Record component', module)
+      .add('with options', () => (
+        <AddRecord
+          title="shop at mall"
+          onClose={action('close view')}
+          sizes={[{ id: 1, value: 'xs' }, { id: 2, value: '34' }]}
+          colors={[{ id: 1, value: 'black' }, { id: 2, value: 'green' }]}
+          items={[{ id: 1, value: 'pants' }, { id: 2, value: 'jacket' }]}
+          onItemSelect={action('item select')}
+          onSizeSelect={action('size select')}
+          onColorSelect={action('color select')}
+          records={[{ id: 0, values: ['record1', 'record2 with some text', 'record3 and text', 'record4'] }]}
+          onRemove={action('remove record')}
         />
       ));

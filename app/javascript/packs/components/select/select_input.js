@@ -103,7 +103,10 @@ const SelectInput = ({ model, name, onChange, onClick, expanded, children, optio
 SelectInput.propTypes = {
   model: PropTypes.string,
   name: PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,

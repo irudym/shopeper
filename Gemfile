@@ -39,6 +39,8 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
+gem 'json'
+
 gem 'webpacker', github: 'rails/webpacker'
 
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"

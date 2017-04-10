@@ -25,3 +25,6 @@
 /.idea
 /.vagrant
 /cookbooks
+
+# Ignore paperclip image files
+/public/system

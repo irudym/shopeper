@@ -10,6 +10,10 @@ const appBlock = document.getElementById('app-block');
 
 ReactDOM.render(
   <NewRecord
+    model="item_in_stock"
+    name="records"
+    action="/director/stock"
+    token={$('meta[name=csrf-token]').attr('content')}
     malls={JSON.parse(appBlock.dataset.malls)}
     items={JSON.parse(appBlock.dataset.items)}
     sizes={JSON.parse(appBlock.dataset.sizes)}

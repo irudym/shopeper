@@ -38,8 +38,10 @@ const config = {
         options: {
           presets: [
             'react',
+            'stage-1',
             ['env', { modules: false }]
-          ]
+          ],
+          plugins: ["transform-es2015-destructuring"]
         }
       },
       {

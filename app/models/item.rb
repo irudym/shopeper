@@ -6,4 +6,13 @@ class Item < DirectorRecord
 
   validates :type, presence: true
   validates :brand, presence: true
+
+  def self.to_options_with_brand
+    self.where(trash: false).collect do |item|
+      {
+          id: item[:id],
+          value: item[:name] + ' of ' + item.brand[:name]
+      }
+    end
+  end
 end
