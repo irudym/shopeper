@@ -1,6 +1,7 @@
 class Director::StockController < DirectorController
   before_action :set_title
   before_action :set_menu, only: [:index]
+  before_action :set_item, only: [:destroy, :update, :edit]
 
   def index
     @malls = Mall.to_options.to_json
@@ -17,13 +18,33 @@ class Director::StockController < DirectorController
     @item_in_shop = ItemInShop.new
   end
 
+  def items
+    @items = ShopInMall.items(mall_id: params[:mall], shop_id: params[:shop])
+  end
+
   def edit
+    @items = Item.to_options_with_brand.to_json
+    @sizes = Size.to_options.to_json
+    @colors = Color.to_options.to_json
+  end
+
+  def update
   end
 
   def trash
+    @items = ItemInShop.where(trash: true)
+    @menu = [
+        {text: 'Add record', url: new_director_stock_path, icon: 'plus'},
+        {text: "Stock (#{ItemInShop.where(trash:false).count})", url: director_stock_index_path, icon: 'dropbox'}
+    ]
   end
 
   def destroy
+    @item.put_to_trash
+    respond_to do |format|
+      format.html { redirect_to director_stock_index_path, notice: 'Item was successfully deleted.' }
+      format.json { head :no_content }
+    end
   end
 
   def create
@@ -67,6 +88,18 @@ class Director::StockController < DirectorController
     # end
   end
 
+  def update
+    respond_to do |format|
+      if @item.update(item_params)
+        format.html { redirect_to director_stock_index_path, notice: 'Item was successfully updated.' }
+        format.json { render :show, status: :ok, location: @item }
+      else
+        format.html { render :edit }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def set_title
@@ -80,5 +113,13 @@ class Director::StockController < DirectorController
         {text: 'Add record', url: new_director_stock_path, icon: 'plus'},
         {text: "Trash (#{trash_count})", url: director_stock_trash_path, icon: 'trash'}
     ]
+  end
+
+  def set_item
+    @item = ItemInShop.where(id: params[:id]).first
+  end
+
+  def item_params
+    params.require(:item).permit(:trash)
   end
 end

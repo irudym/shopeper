@@ -39,7 +39,7 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
-gem 'json'
+gem 'json', github: 'flori/json', branch: 'v1.8'
 
 gem 'webpacker', github: 'rails/webpacker'
 

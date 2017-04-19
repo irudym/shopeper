@@ -10,6 +10,7 @@ const appBlock = document.getElementById('app-block');
 
 ReactDOM.render(
   <ViewStock
+    token={$('meta[name=csrf-token]').attr('content')}
     malls={JSON.parse(appBlock.dataset.malls)}
   />,
   document.getElementById('app-block'),

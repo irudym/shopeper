@@ -1,0 +1,17 @@
+%tr
+  %td
+    = record_restore.item.name
+  %td
+    = record_restore.item.brand.name
+  %td
+    = record_restore.size.name
+  %td
+    = record_restore.color.name
+  %td
+    = record_restore.price
+  %td
+    = record_restore.quantity
+  %td
+    = link_to "#{icon('undo')}".html_safe, {controller: :stock, action: "update", id: record_restore.id, item: {trash: false}}, method: :put
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_stock_index_path(record_restore), method: :delete, confirm: 'Are you sure ?'

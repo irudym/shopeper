@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :director do
 
     get 'stock/trash'
+    get 'stock/items'
     resources :stock
 
     get 'types/trash'

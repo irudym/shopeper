@@ -1,2 +1,17 @@
-%h1 Director::Stock#trash
-%p Find me in app/views/director/stock/trash.html.haml
+= section_menu(@menu)
+= show_notice(notice)
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th Item
+          %th Brand
+          %th Size
+          %th Color
+          %th Price
+          %th Quantity
+          %th Restore
+          %th Delete
+      %tbody
+        = render partial: "record_restore", collection: @items

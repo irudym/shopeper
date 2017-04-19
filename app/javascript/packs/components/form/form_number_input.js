@@ -21,14 +21,14 @@ FormNumberInput.propTypes = {
   model: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.number,
 };
 
 FormNumberInput.defaultProps = {
   model: '',
   name: '',
   onChange: null,
-  defaultValue: '',
+  defaultValue: 0,
 };
 
 export default FormNumberInput;

@@ -18,6 +18,15 @@ class SelectContainer extends Component {
     this.handleExpand = this.handleExpand.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.clearOption = this.clearOption.bind(this);
+
+    if (this.props.onReset) this.props.onReset(this.clearOption);
+  }
+
+  clearOption() {
+    this.setState({
+      option: {},
+    });
   }
 
   handleExpand() {
@@ -94,6 +103,7 @@ SelectContainer.propTypes = {
   }),
   children: PropTypes.element,
   className: PropTypes.string,
+  onReset: PropTypes.func,
 };
 
 SelectContainer.defaultProps = {
@@ -101,6 +111,7 @@ SelectContainer.defaultProps = {
   defaultValue: {},
   children: null,
   className: '',
+  onReset: null,
 };
 
 export default SelectContainer;

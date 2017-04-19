@@ -13,19 +13,24 @@ export default class ViewStock extends React.Component {
 
     this.state = {
       mall: null,
-      shop: null,
+      shop: {},
       records: [],
     };
 
     this.handleMallSelect = this.handleMallSelect.bind(this);
     this.handleShopSelect = this.handleShopSelect.bind(this);
     this.handleShow = this.handleShow.bind(this);
+    this.handleRecordDelete = this.handleRecordDelete.bind(this);
+    this.handleRecordClick = this.handleRecordClick.bind(this);
+    this.resetSelect = null;
   }
 
   handleMallSelect(item) {
     this.setState({
       mall: item.value,
+      shop: {},
     });
+    if (this.resetSelect) this.resetSelect();
     // get list of shop in the selected mall data from API
     fetch(`/director/malls/${item.value.id}/shops.json`)
       .then(response => response.json())
@@ -43,7 +48,43 @@ export default class ViewStock extends React.Component {
   }
 
   handleShow() {
-    // load data from API
+    // get list of items of the shop in the mall from API
+    fetch(`/director/stock/items.json?mall=${this.state.mall.id}&shop=${this.state.shop.id}`)
+      .then(response => response.json())
+      .then((records) => {
+        this.setState({
+          records,
+        });
+      });
+  }
+
+  handleRecordDelete(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // send delete request
+    fetch(`/director/stock/${id}`, {
+      method: 'delete',
+      headers: {
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': this.props.token,
+      },
+      credentials: 'same-origin',
+    }).then((response) => {
+      const records = this.state.records.filter(record => (
+        record.id !== id
+      ));
+      this.setState({
+        records,
+      });
+    });
+  }
+
+  handleRecordClick(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location = `/director/stock/${id}/edit`;
   }
 
   render() {
@@ -61,6 +102,8 @@ export default class ViewStock extends React.Component {
             name="shops"
             model="stock"
             onSelect={this.handleShopSelect}
+            defaultValue={this.state.shop}
+            onReset={func => (this.resetSelect = func)}
           />
           <FormButton
             onClick={this.handleShow}
@@ -70,8 +113,11 @@ export default class ViewStock extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <Table
-              header={['item', 'brand', 'size', 'color', 'price', 'quantity']}
+              header={['Item', 'Brand', 'Size', 'Color', 'Price', 'Quantity']}
               records={this.state.records}
+              withDelete={true}
+              onDelete={this.handleRecordDelete}
+              onClick={this.handleRecordClick}
             />
           </div>
         </div>
@@ -85,4 +131,5 @@ ViewStock.propTypes = {
     id: PropTypes.number,
     value: PropTypes.string,
   })).isRequired,
+  token: PropTypes.string.isRequired,
 };

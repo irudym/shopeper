@@ -22,12 +22,17 @@ h1 {
   color: $color-brown;
 }
 
+.ReactModal__Overlay {
+  z-index: 1000;
+}
+
 .side-bar {
   position: fixed;
   top: 0;
   width: $sidebar-width;
   background-color: $color-dark-blue;
   height: 100%;
+  z-index: 100;
 
   .logo {
     height: $page-top-offset + 1.6;
@@ -233,6 +238,14 @@ h1 {
   }
 }
 
+.with-row-select {
+  cursor: pointer;
+}
+
+.with-row-select:hover {
+  background-color: $side-menu-highlight;
+}
+
 
 @media (max-width: $screen-xs-max) {
   .side-bar {
@@ -251,3 +264,4 @@ h1 {
     margin-left: 6rem;
   }
 }
+
