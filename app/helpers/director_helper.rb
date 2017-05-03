@@ -27,7 +27,7 @@ module DirectorHelper
             icon: 'dropbox'
         },
         {
-            text: '__________',
+            text: '____',
             url: ''
         },
         {
@@ -54,10 +54,24 @@ module DirectorHelper
             text: 'types',
             url: director_types_path,
             icon: 'tag'
+        },
+        {
+            text: '____',
+            url: ''
+        },
+        {
+            text: 'bugs',
+            url: director_bugs_path,
+            icon: 'bug'
         }
+
     ]
     menu = menu_items.inject('') do |acc, item|
-      acc + "<a href='#{item[:url]}'><div class='menu-item #{active == item[:text] ? 'menu-active' : ''}'><li><div class='icon'>#{icon(item[:icon])}</div><div class='hidden-xs menu-text'>#{sanitize item[:text]}</div></li></div></a>"
+      if item[:text].eql? '____'
+        acc + '<div class="separator"></div>'
+      else
+        acc + "<a href='#{item[:url]}'><div class='menu-item #{active == item[:text] ? 'menu-active' : ''}'><li><div class='icon'>#{icon(item[:icon])}</div><div class='hidden-xs menu-text'>#{sanitize item[:text]}</div></li></div></a>"
+      end
     end
     "<ul>#{menu}</ul>".html_safe
   end
@@ -125,5 +139,13 @@ module DirectorHelper
       acc + "<option value='#{item[:id]}'>#{item[:name]}</option>"
     end + "</select>"
     html.html_safe
+  end
+
+  def dashboardWidget(icon, title, text)
+    "<div class='col-sm-4 widget-info'>
+      <div class='icon'>#{icon(icon)}</div>
+      <div class='title'>#{title}</div>
+      <div class='text'>#{text}</div>
+     </div>".html_safe
   end
 end

@@ -246,6 +246,20 @@ h1 {
   background-color: $side-menu-highlight;
 }
 
+.separator {
+  height: 0.5rem;
+  border-bottom: 1px solid $color-light-blue;
+  margin: 0.5rem 3rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 0px 0px $color-blue;
+}
+
+.widget-info {
+  border: solid 1px gray;
+  border-radius: 2px;
+  padding: 1rem;
+}
+
 
 @media (max-width: $screen-xs-max) {
   .side-bar {

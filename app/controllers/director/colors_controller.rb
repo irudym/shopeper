@@ -74,7 +74,7 @@ class Director::ColorsController < DirectorController
   def set_menu
     trash_count = Color.trash_bin.count
     @menu = [
-        {text: 'Add color', url: new_director_color_path, icon: 'pencil'},
+        {text: 'Add color', url: new_director_color_path, icon: 'plus'},
         {text: "Trash (#{trash_count})", url: director_colors_trash_path, icon: 'trash'}
     ]
   end

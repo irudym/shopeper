@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const FormSubmit = ({ id, action, token, children, method, enctype }) => (
+const FormSubmit = ({ id, action, token, children, method, enctype, onSubmit }) => (
   <form
     className="form-horizontal"
     role="form"
@@ -9,6 +9,7 @@ const FormSubmit = ({ id, action, token, children, method, enctype }) => (
     acceptCharset="UTF-8"
     method="post"
     encType={enctype}
+    onSubmit={onSubmit}
   >
     <input name="utf8" type="hidden" value="✓" />
     {method === 'patch' ? <input type="hidden" name="_method" value="patch" /> : ''}
@@ -27,12 +28,14 @@ FormSubmit.propTypes = {
   token: PropTypes.string,
   method: PropTypes.string,
   enctype: PropTypes.string,
+  onSubmit: PropTypes.func,
 };
 
 FormSubmit.defaultProps = {
   token: '',
   method: 'post',
   enctype: null,
+  onSubmit: null,
 };
 
 

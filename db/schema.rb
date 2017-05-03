@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409165724) do
+ActiveRecord::Schema.define(version: 20170426183511) do
 
   create_table "brand_in_shops", force: :cascade do |t|
     t.integer  "shop_id"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 20170409165724) do
     t.index ["picture_id"], name: "index_brands_on_picture_id"
   end
 
+  create_table "bugs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "owned",                default: false
+    t.boolean  "trash",                default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "status",               default: 0
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
   create_table "colors", force: :cascade do |t|
     t.string   "name"
     t.integer  "code"
@@ -38,6 +52,14 @@ ActiveRecord::Schema.define(version: 20170409165724) do
     t.datetime "updated_at",                 null: false
     t.boolean  "trash",      default: false
     t.string   "hex_code"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "bug_id"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bug_id"], name: "index_comments_on_bug_id"
   end
 
   create_table "item_in_shops", force: :cascade do |t|

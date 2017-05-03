@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
 const closeButtonStyle = {
-  position: 'absolute',
-  top: 8,
-  right: 8,
+  position: 'fixed',
+  top: 48,
+  right: 64,
   width: '2rem',
   height: '2rem',
   padding: 0,

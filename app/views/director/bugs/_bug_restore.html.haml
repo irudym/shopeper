@@ -1,0 +1,11 @@
+%tr
+  %td
+    = bug_restore.owned
+  %td
+    = bug_restore.title
+  %td
+    = bug_restore.comments.count
+  %td
+    = link_to "#{icon('undo')}".html_safe, {controller: :bugs, action: "update", id: bug_restore.id, bug: {trash: false}}, method: :put
+  %td
+    = link_to "#{icon('trash')}".html_safe, director_bug_path(bug_restore), method: :delete, confirm: 'Are you sure ?'

@@ -15,6 +15,10 @@ const selectOption = {
   WebkitUserSelect: 'none', /* Chrome/Safari */
   MozUserSelect: 'none', /* Firefox */
   msUserSelect: 'none', /* IE10+ */
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  width: '80%',
+  textOverflow: 'ellipsis',
 };
 
 const selectArrow = {

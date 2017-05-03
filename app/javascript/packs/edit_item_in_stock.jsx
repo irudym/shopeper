@@ -41,9 +41,9 @@ const EditRecord = ({ items, sizes, colors, model, token, record }) => {
       // enctype="multipart/form-data"
       method="patch"
     >
-      <SelectItems name="item" model={model} />
-      <SelectSizes name="size" model={model} />
-      <SelectColors name="color" model={model} />
+      <SelectItems name="item_id" model={model} />
+      <SelectSizes name="size_id" model={model} />
+      <SelectColors name="color_id" model={model} />
       <FormNumberInput
         model={model}
         name="price"

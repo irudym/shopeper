@@ -120,6 +120,6 @@ class Director::StockController < DirectorController
   end
 
   def item_params
-    params.require(:item).permit(:trash)
+    params.require(:item).permit(:trash, :item_id, :size_id, :color_id, :quantity, :price)
   end
 end

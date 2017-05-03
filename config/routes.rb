@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   namespace :director do
 
+    get 'bugs/trash'
+    resources :bugs do
+      post :add_comment
+    end
+
     get 'stock/trash'
     get 'stock/items'
     resources :stock

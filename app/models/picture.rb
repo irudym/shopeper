@@ -1,8 +1,9 @@
 class Picture < DirectorRecord
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   has_many :item_pictures
   has_many :items, through: :item_pictures
 
-  has_attached_file :image, :styles => { :thumb => "50x50>" }
+
   # Validate content type
   validates_attachment_content_type :image, content_type: /\Aimage/
   # Validate filename

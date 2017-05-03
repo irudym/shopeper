@@ -19,7 +19,7 @@ const ShowErrors = ({ errors }) => (
 );
 
 ShowErrors.propTypes = {
-  errors: PropTypes.arrayOf(PropTypes.tring).isRequired,
+  errors: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ShowErrors;
