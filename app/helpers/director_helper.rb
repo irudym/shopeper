@@ -142,10 +142,12 @@ module DirectorHelper
   end
 
   def dashboardWidget(icon, title, text)
-    "<div class='col-sm-4 widget-info'>
-      <div class='icon'>#{icon(icon)}</div>
-      <div class='title'>#{title}</div>
-      <div class='text'>#{text}</div>
+    "<div class='col-sm-4'>
+      <div class='widget-info'>
+        <div class='icon'>#{icon(icon)}</div>
+        <div class='title'>#{title}</div>
+        <div class='text'>#{text}</div>
+      </div>
      </div>".html_safe
   end
 end

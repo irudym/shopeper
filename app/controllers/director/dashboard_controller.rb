@@ -5,6 +5,9 @@ class Director::DashboardController < DirectorController
     @mall_count = Mall.all.count
     @shop_count = Shop.all.count
     @item_count = Item.all.count
+    @brand_count = Brand.all.count
+    @type_count = Type.all.count
+    @bug_count = Bug.all.count
   end
 
   private
