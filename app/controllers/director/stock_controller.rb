@@ -5,6 +5,7 @@ class Director::StockController < DirectorController
 
   def index
     @malls = Mall.to_options.to_json
+    @token = current_user.authentication_token
   end
 
   def new

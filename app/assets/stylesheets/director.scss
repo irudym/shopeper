@@ -184,11 +184,13 @@ h1 {
 .error-icon {
   font-size: 3rem;
   color: $color-red;
+  min-width: 6rem;
 }
 
 .info-icon {
   font-size: 3rem;
   color: $color-green;
+  min-width: 6rem;
 }
 
 .color-box {

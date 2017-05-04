@@ -21,6 +21,9 @@ class Director::ItemsController < DirectorController
 
   def new
     @item = Item.new
+    @token = current_user.authentication_token
+    @types = Type.to_options.to_json
+    @brands = Brand.to_options.to_json
   end
 
   def create

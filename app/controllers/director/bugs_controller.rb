@@ -5,6 +5,7 @@ class Director::BugsController < DirectorController
   def index
     @bugs = Bug.to_list.to_json
     @trash_count = Bug.where(trash: true).count.to_json
+    @token = current_user.authentication_token
   end
 
   def trash

@@ -32,7 +32,7 @@ export default class ViewStock extends React.Component {
     });
     if (this.resetSelect) this.resetSelect();
     // get list of shop in the selected mall data from API
-    fetch(`/director/malls/${item.value.id}/shops.json`)
+    fetch(`/director/malls/${item.value.id}/shops.json?user_token=${this.props.userToken}`)
       .then(response => response.json())
       .then((shops) => {
         this.setState({
@@ -49,7 +49,7 @@ export default class ViewStock extends React.Component {
 
   handleShow() {
     // get list of items of the shop in the mall from API
-    fetch(`/director/stock/items.json?mall=${this.state.mall.id}&shop=${this.state.shop.id}`)
+    fetch(`/director/stock/items.json?mall=${this.state.mall.id}&shop=${this.state.shop.id}&user_token=${this.props.userToken}`)
       .then(response => response.json())
       .then((records) => {
         this.setState({
@@ -132,4 +132,5 @@ ViewStock.propTypes = {
     value: PropTypes.string,
   })).isRequired,
   token: PropTypes.string.isRequired,
+  userToken: PropTypes.string.isRequired,
 };

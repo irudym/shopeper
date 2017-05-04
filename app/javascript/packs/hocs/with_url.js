@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import 'whatwg-fetch';
 
-const withUrl = (WrappedComponent, url) => (
+const withUrl = (WrappedComponent, url, token) => (
   class extends Component {
     constructor(props) {
       super(props);
@@ -14,7 +14,13 @@ const withUrl = (WrappedComponent, url) => (
     }
 
     componentDidMount() {
-      fetch(url)
+      fetch(url+`?user_token=${token}`, {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': token,
+        },
+      })
         .then(response => response.json())
         .then((data) => {
           const options = data.map(item => (

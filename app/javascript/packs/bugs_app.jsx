@@ -125,7 +125,7 @@ class BugsApp extends Component {
     e.stopPropagation();
     e.preventDefault();
 
-    fetch(`/director/bugs/${id}.json`)
+    fetch(`/director/bugs/${id}.json?user_token=${this.props.userToken}`)
       .then(response => response.json())
       .then((bug) => {
         this.setState({
@@ -280,13 +280,15 @@ BugsApp.propTypes = {
   action: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   bugs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  trashCount: PropTypes.number.isRequred,
+  trashCount: PropTypes.number.isRequired,
+  userToken: PropTypes.string.isRequired,
 };
 
 const appBlock = document.getElementById('app-block');
 
 ReactDOM.render(
   <BugsApp
+    userToken={appBlock.dataset.token}
     token={$('meta[name=csrf-token]').attr('content')}
     action="bugs"
     id="bug_id"
