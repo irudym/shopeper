@@ -1,3 +1,55 @@
 // Place all the styles related to the shopeper controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$color-main: #F8F8F8;
+$color-header: #34495E;
+$color-form: #62C4E9;
+
+
+
+.main-container {
+  background: $color-main;
+  margin-left: 25%;
+  height: 100%;
+  width: 50%;
+}
+
+.main-header {
+  top: 0;
+  background: $color-header;
+  height: 15rem;
+}
+
+.main-body {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.shopeper-form {
+  margin-top: -7rem;
+  background: $color-form;
+  margin-left: 2%;
+  width: 96%;
+  padding: 1rem;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+@media (max-width: 769px) {
+  .main-container {
+    background: $color-main;
+    margin-left: 15%;
+    height: 100%;
+    width: 70%;
+  }
+}
+
+@media (max-width: 490px) {
+  .main-container {
+    background: $color-main;
+    margin-left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

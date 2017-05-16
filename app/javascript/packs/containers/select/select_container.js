@@ -39,6 +39,7 @@ class SelectContainer extends Component {
   }
 
   handleChange(e) {
+    // console.log("SelectContainer: handle change");
     this.setState({
       showOption: false,
       filter: e.target.value,

@@ -6,7 +6,7 @@ const optionStyle = {
 };
 
 const SelectOption = ({ value, onSelect }) => (
-  <li className="menu-hover" style={optionStyle} onMouseDown={(e) => { e.stopPropagation(); onSelect(value); }}>
+  <li className="menu-hover" style={optionStyle} onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onSelect(value);}}>
     {value.value}
   </li>
 );

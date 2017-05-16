@@ -15,6 +15,108 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-html {
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// @import "shopeper";
+
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Light') format('truetype');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Regular') format('truetype');
+  font-weight: normal;
+}
+
+@font-face  {
+  font-family: 'DroidSans';
+  src: font-url('DroidSans.ttf') format('truetype');
+  font-weight: normal;
+}
+
+html, body {
   font-size: 14px;
+  // height: 100%;
+  // display: flex;
+  // flex-direction:column;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+.search-form {
+  width: 100%;
+  height: 2.2rem;
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+}
+
+
+input:focus {
+  outline:none;
+}
+
+.search-form input {
+  display: inline-block;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.search-form input::-webkit-search-decoration, .search-form input::-webkit-search-cancel-button, .search-form input::-webkit-search-results-button, .search-form input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.search-form input:focus, .search-form input:active{
+  outline: none;
+  background-color: red;
+  box-shadow: inset 0 0 0 0px #3E82F7;
+  background: #FFFFFF;
+}
+
+.search-form button {
+  color: #8F9091;
+  background-color: #eee;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: inherit;
+  margin: 0;
+  border: 0;
+  border-radius: 0 3px 3px 0;
+  padding: 0;
+  width: 2rem;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  user-select: none;
+}
+
+.login-screen {
+  background-color: #34495E;
+}
+
+.login-form {
+  padding-top: 20px;
+  background: #F8F8F8;
+  height: 100%;
+  position: absolute;
+
+  h2 {
+    font-family: 'DroidSans';
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-family: "DroidSans";
+  }
 }

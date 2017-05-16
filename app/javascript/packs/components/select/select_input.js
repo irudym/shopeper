@@ -91,7 +91,7 @@ const SelectInput = ({ model, name, onChange, onClick, expanded, children, optio
         }
         onBlur={
           expanded ?
-            onClick
+            onClick // TODO: it doesn't work on modal view! when you click on scroll elemen of option list it closes!
             :
             null
         }

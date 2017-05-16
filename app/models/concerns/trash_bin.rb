@@ -3,6 +3,10 @@ module TrashBin
     def trash_bin
       self.where(trash:true)
     end
+
+    def available
+      self.where(trash: false)
+    end
   end
 
   def put_to_trash

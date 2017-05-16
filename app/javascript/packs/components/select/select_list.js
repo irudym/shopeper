@@ -10,7 +10,7 @@ const listStyle = {
   borderRadius: '0 0 3px 3px',
   position: 'absolute',
   backgroundColor: '#fff',
-  zIndex: '3',
+  zIndex: 1,
   margin: 0,
   padding: 0,
   top: 34,
@@ -31,11 +31,11 @@ const SelectList = ({ options, expanded, onSelect, filter }) => {
       ));
     }
     return (
-      <ul style={listStyle} >
-        {filtered.map(item => (
-          <SelectOption key={item.id} value={item} onSelect={onSelect} />
-        ))}
-      </ul>
+        <ul style={listStyle} >
+          {filtered.map(item => (
+            <SelectOption key={item.id} value={item} onSelect={onSelect} />
+          ))}
+        </ul>
     );
   }
   return null;

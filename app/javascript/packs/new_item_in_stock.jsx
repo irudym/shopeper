@@ -14,6 +14,7 @@ ReactDOM.render(
     name="records"
     action="/director/stock"
     token={$('meta[name=csrf-token]').attr('content')}
+    userToken={appBlock.dataset.token}
     malls={JSON.parse(appBlock.dataset.malls)}
     items={JSON.parse(appBlock.dataset.items)}
     sizes={JSON.parse(appBlock.dataset.sizes)}

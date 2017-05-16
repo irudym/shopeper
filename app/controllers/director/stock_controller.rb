@@ -17,6 +17,8 @@ class Director::StockController < DirectorController
     @colors = Color.to_options.to_json
 
     @item_in_shop = ItemInShop.new
+
+    @token = current_user.authentication_token
   end
 
   def items

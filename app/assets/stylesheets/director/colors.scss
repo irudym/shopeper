@@ -10,6 +10,8 @@ $color-brown: #c2ac81;
 $color-green: #43ad6f;
 $color-darkBrown: #937F62;
 $color-veryDarkBrown: #534837;
+$color-dashboard-info: #56DE8E; //#AEBF69;
+$color-dashboard-info-border: #43ad6f;
 
 $sidebar-width: 15rem;
 $page-top-offset: 6rem;
@@ -17,7 +19,7 @@ $menu-item-padding: 0.9rem;
 $menu-item-height: $menu-item-padding*2 + 1;
 
 @font-face  {
-  font-family: 'DoroidSans';
+  font-family: 'DroidSans';
   src: font-url('DroidSans.ttf') format('truetype');
   font-weight: normal;
 }

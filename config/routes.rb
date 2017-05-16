@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
+  get 'search' => 'search#index'
   namespace :director do
 
     get 'bugs/trash'

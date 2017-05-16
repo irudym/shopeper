@@ -56,7 +56,7 @@ export default class NewRecord extends React.Component {
       mall: item.value,
     });
     // get list of shop in the selected mall data from API
-    fetch(`/director/malls/${item.value.id}/shops.json`)
+    fetch(`/director/malls/${item.value.id}/shops.json?user_token=${this.props.userToken}`)
       .then(response => response.json())
       .then((shops) => {
         this.setState({
@@ -206,5 +206,6 @@ NewRecord.propTypes = {
   model: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
+  userToken: PropTypes.string.isRequired,
   action: PropTypes.string.isRequired,
 };

@@ -15,5 +15,11 @@ class DirectorRecord < ActiveRecord::Base
         }
       end
     end
+
+    def to_names
+      self.available.collect do |item|
+        item[:name]
+      end
+    end
   end
 end
