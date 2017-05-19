@@ -12,7 +12,7 @@ const formStyle = {
 
 const searchHint = {
   fontSize: '0.9rem',
-  fontWeight: '200',
+  // fontWeight: '200',
   marginTop: '15px',
 };
 
