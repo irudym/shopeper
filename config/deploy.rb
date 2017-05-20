@@ -78,7 +78,7 @@ namespace :deploy do
   end
 
   namespace :assets do
-    desk 'install node_modules'
+    desc 'install node_modules'
     task :install do
       on roles(:app) do
         execute("cd #{release_path} && npm")
