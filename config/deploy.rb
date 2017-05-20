@@ -81,7 +81,7 @@ namespace :deploy do
     desc 'install node_modules'
     task :install do
       on roles(:app) do
-        execute("cd #{release_path} && npm")
+        execute("cd #{release_path} && yarn install")
       end
     end
   end

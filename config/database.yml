@@ -25,6 +25,6 @@ production:
   encoding: utf8
   pool: 5
   username: redfox
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   database: shopeper_production
   password: <%= ENV['SHOPEPER_DATABASE_PASSWORD'] %>
