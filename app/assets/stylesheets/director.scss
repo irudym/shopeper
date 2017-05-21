@@ -291,6 +291,10 @@ h1 {
 
 //@media (max-width: $screen-xs-max) {
 @media (max-device-width: 736px) and (orientation: portrait) {
+  html, body {
+    font-size: 26px;
+  }
+
   .side-bar {
     width: 5rem;
 
