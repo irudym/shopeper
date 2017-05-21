@@ -314,5 +314,26 @@ h1 {
   .side-bar-offset {
     margin-left: 6rem;
   }
+
+  .widget-info {
+
+    height: 6rem;
+    
+    .icon {
+      font-size: 2rem;
+      bottom: 1rem;
+    }
+
+    .title {
+      font-size: 1.1rem;
+      padding: 0.3rem 0.3rem;
+    }
+
+    .text {
+      font-size: 3rem;
+      bottom: 0.3rem;
+      right: 4.2rem;
+    }
+  }
 }
 
