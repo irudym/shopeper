@@ -108,8 +108,8 @@ input:focus {
 .login-form {
   padding-top: 20px;
   background: #F8F8F8;
-  height: 100%;
-  position: absolute;
+  // height: 100%;
+  // position: absolute;
 
   h2 {
     font-family: 'DroidSans';
@@ -118,5 +118,66 @@ input:focus {
 
   label {
     font-family: "DroidSans";
+  }
+}
+
+.header {
+  top: 0px;
+  background: rgb(52, 73, 94);
+  height: 15rem;
+  font-family: 'Roboto';
+  font-size: 1.6rem;
+  font-weight: 200;
+  color: rgb(255, 255, 255);
+  padding-top: 4rem;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.main-body {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.shadow-box {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 3px 2px;
+}
+
+.sub-header {
+  margin-top: -7rem;
+  background: linear-gradient(-45deg, rgb(76, 141, 178), rgb(132, 198, 236), rgb(97, 191, 233));
+  padding: 1rem;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.main-content {
+  background: white;
+  padding: 5px;
+
+  form {
+    padding-top: 2rem;
+  }
+}
+
+.main-container {
+  margin-left: 25%;
+  width: 50%;
+  background: rgb(248, 248, 248);
+}
+
+@media (max-width: 1010px) {
+  .main-container {
+    margin-left: 15%;
+    width: 70%;
+  }
+}
+
+
+@media (max-width: 790px) {
+  .main-container {
+    margin-left: 0;
+    width: 100%;
   }
 }

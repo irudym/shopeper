@@ -1,24 +1,26 @@
-.container-fluid.login-screen
+.login-screen
   .row
-    .col-sm-offset-4.col-sm-4.login-form
-      %h2 Log in
-      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
-        .form-group
-          = f.label :email, class: 'control-label col-sm-3'
-          .col-sm-8
-            = f.email_field :email, autofocus: true, class: 'form-control'
-        .form-group
-          = f.label :password, class: 'control-label col-sm-3'
-          .col-sm-8
-            = f.password_field :password, autocomplete: "off", class: 'form-control'
-        - if devise_mapping.rememberable?
+    .col-sm-12.login-form
+      .sub-header
+        %h2 Log in
+      .main-content
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
+          .form-group
+            = f.label :email, class: 'control-label col-sm-3'
+            .col-sm-8
+              = f.email_field :email, autofocus: true, class: 'form-control'
+          .form-group
+            = f.label :password, class: 'control-label col-sm-3'
+            .col-sm-8
+              = f.password_field :password, autocomplete: "off", class: 'form-control'
+          - if devise_mapping.rememberable?
+            .form-group
+              .col-sm-offset-3.col-sm-8
+                = f.check_box :remember_me
+                = f.label :remember_me, class: 'control-label'
           .form-group
             .col-sm-offset-3.col-sm-8
-              = f.check_box :remember_me
-              = f.label :remember_me, class: 'control-label'
-        .form-group
-          .col-sm-offset-3.col-sm-8
-            = f.submit "Log in", class: 'btn btn-default button-blue'
-        .form-group
-          .col-sm-offset-3.col-sm-8
-            = render "devise/shared/links"
+              = f.submit "Log in", class: 'btn btn-default button-blue'
+          .form-group
+            .col-sm-offset-3.col-sm-8
+              = render "devise/shared/links"

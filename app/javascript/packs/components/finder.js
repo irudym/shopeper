@@ -7,9 +7,7 @@ import Header from '../components/header';
 
 const mainContainer = {
   background: '#F8F8F8',
-  marginLeft: '25%',
   height: '100%',
-  width: '50%',
 };
 
 const mainHeader = {
@@ -36,8 +34,8 @@ const withShadow = {
 };
 
 const Finder = ({ onChange, onSearch, hint, results }) => (
-  <div style={mainContainer}>
-    <div style={mainHeader}>{'Shopeper'}</div>
+  <div style={mainContainer} className="main-container">
+    <div style={mainHeader}>{'S•h•o•p•e•p•e•r'}</div>
     <div style={mainBody}>
       <div style={withShadow}>
         <Header>
