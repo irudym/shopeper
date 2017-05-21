@@ -177,7 +177,12 @@ input:focus {
 }
 
 
-@media (max-width: 811px) {
+@media (max-width: 941px) {
+
+  html, body {
+    font-size: 17px;
+  }
+
   .main-container {
     margin-left: 0;
     width: 100%;
