@@ -14,6 +14,7 @@ const resultHeader = {
 
 const resultBlock = {
   paddingLeft: '1rem',
+  fontSize: '0.8rem',
 };
 
 const record = {
