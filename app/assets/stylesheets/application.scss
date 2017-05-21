@@ -189,10 +189,10 @@ input:focus {
 }
 
 
-@media (max-width: 1100px) {
+@media (max-device-width: 736px) and (orientation: portrait) {
 
   html, body {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .main-container {

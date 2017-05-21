@@ -77,7 +77,7 @@ module DirectorHelper
   end
 
   def side_bar(active)
-    "<div class='side-bar'><div class='logo'><div class='hidden-xs'>shoPEPEr</div><div class='visible-xs'>PE</div></div>#{side_menu(active)}</div>".html_safe
+    "<div class='side-bar'><div class='logo'><div class='hidden-xs'>S•H•O•P•E•P•E•R</div><div class='visible-xs'>PE</div></div>#{side_menu(active)}</div>".html_safe
   end
 
   def title(text)
