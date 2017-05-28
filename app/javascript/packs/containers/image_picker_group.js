@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import PicturePicker from '../components/picture/picture_picker';
 import ShowErrors from '../components/show_errors';

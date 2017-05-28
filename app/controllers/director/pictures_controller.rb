@@ -12,6 +12,13 @@ class Director::PicturesController < DirectorController
 
   def edit
     @title = 'Edit picture'
+    @edit_picture = {
+        id: @picture.id,
+        name: @picture.name,
+        description: @picture.description,
+        url: @picture.image.url,
+        size: @picture.image.size,
+    }.to_json
   end
 
   def new
@@ -25,6 +32,13 @@ class Director::PicturesController < DirectorController
         format.html { redirect_to director_pictures_path, notice: "Picture [#{@picture.name}] was successfully updated." }
         format.json { render :show, status: :ok, location: @picture }
       else
+        @edit_picture = {
+            id: @picture.id,
+            name: @picture.name,
+            description: @picture.description,
+            url: @picture.image.url,
+            size: @picture.image.size,
+        }.to_json
         format.html { render :edit }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end

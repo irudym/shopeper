@@ -42,6 +42,7 @@ class Director::ColorsController < DirectorController
   end
 
   def edit
+    @title = 'Edit color'
   end
 
   def update

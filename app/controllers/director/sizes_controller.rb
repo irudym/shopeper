@@ -22,6 +22,7 @@ class Director::SizesController < DirectorController
 
   # GET /sizes/1/edit
   def edit
+    @title = "Edit size"
   end
 
   def trash

@@ -48,6 +48,7 @@ class Director::BrandsController < DirectorController
   end
 
   def edit
+    @title = "Edit brand"
   end
 
   def destroy

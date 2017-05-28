@@ -23,6 +23,7 @@ class Director::TypesController < DirectorController
 
   # GET /director/types/1/edit
   def edit
+    @title = "Edit type"
   end
 
   def trash

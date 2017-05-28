@@ -289,12 +289,7 @@ h1 {
 }
 
 
-//@media (max-width: $screen-xs-max) {
-@media (max-device-width: 736px) and (orientation: portrait) {
-  html, body {
-    font-size: 26px;
-  }
-
+@media (max-width: $screen-xs-max) {
   .side-bar {
     width: 5rem;
 
@@ -304,6 +299,34 @@ h1 {
 
     li {
       margin-left: 1.8rem;
+    }
+  }
+
+  .side-bar-offset {
+    margin-left: 6rem;
+  }
+}
+
+
+//iphone in portrait
+@media (max-device-width: 736px) and (orientation: portrait) {
+  html, body {
+    font-size: 26px;
+  }
+
+  .side-bar {
+    width: 5rem;
+
+    .menu-item {
+      padding: 0.7rem 0;
+    }
+
+    li {
+      margin-left: 1.8rem;
+    }
+
+    .icon {
+      font-size: 1.5rem;
     }
   }
 
@@ -322,6 +345,7 @@ h1 {
     .icon {
       font-size: 2rem;
       bottom: 1rem;
+      left: 2.3rem;
     }
 
     .title {
