@@ -51,6 +51,8 @@ class Director::ItemsController < DirectorController
         format.html { redirect_to director_items_path, notice: 'Item was created.' }
         format.json { render :show, status: :created, location: @item }
       else
+        @types = Type.to_options.to_json
+        @brands = Brand.to_options.to_json
         format.html { render :new }
         format.json { render json: @items.errors, status: :unprocessable_entity }
       end
