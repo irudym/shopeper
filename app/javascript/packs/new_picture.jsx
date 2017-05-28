@@ -1,5 +1,5 @@
 /**
- * Created by igor rudym on 23/05/2017. (dd/mm/year)
+ * Created by igor rudym on 28/05/2017. (dd/mm/year)
  */
 
 import React from 'react';
@@ -12,9 +12,9 @@ const picture = JSON.parse(appBlock.dataset.picture);
 ReactDOM.render(
   <EditPicture
     picture={picture}
-    action={`/director/pictures/${picture.id}`}
+    action="/director/pictures"
     token={$('meta[name=csrf-token]').attr('content')}
-    method="patch"
+    method="post"
   />,
   document.getElementById('app-block'),
 );
